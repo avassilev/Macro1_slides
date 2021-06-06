@@ -1,0 +1,209 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+% \setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{} % Suppresses the navigation symbols in BEAMER
+\title[Валутни курсове]{Валутни курсове}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основни понятия}
+\framesubtitle{}
+\begin{itemize}
+\item Валутен курс (номинален): цената, по която паричната единица на една страна се обменя за паричната единица на друга страна
+\item 1 EUR = 1.95583 BGN; 1 USD = 1.50 BGN
+\item Котировки
+\begin{itemize}
+\item Права котировка: $X$ единици местна валута за единица чужда валута (1.50 лева за 1 щ.д.)
+\item Обратна котировка: $X$ единици чужда валута за единица местна валута (0.67 щ.д. за 1 лев)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Фактори, влияещи върху валутните курсове}
+\framesubtitle{}
+%\begin{minipage}
+\begin{columns}[]
+\begin{column}{0.4\textwidth}
+Фактори:
+\begin{itemize}
+\item макроикономически
+\item технически
+\item субективни и психологически
+\end{itemize}
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{ERUSDBGN}
+\caption{Средномесечен валутен курс лев-щатски долар за 2004-2006 г.}
+\end{figure}
+\end{column}
+\end{columns}
+%\end{minipage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Номинален и реален валутен курс}
+\framesubtitle{}
+\begin{itemize}
+\item Валутният курс дава информация за покупателната сила на дадена валута спрямо друга при определени ценови равнища в съответните страни
+\item Пример:
+\begin{itemize}
+\item  1 кафе = 1 лев (България)
+\item 1 кафе = 1 долар (САЩ)
+\item 1 долар = 2 лева
+\item {\color{red}1 долар $\rightarrow$ 2 кафета в България} \pause
+\item Какво става, ако 1 кафе = 2 лева (България)? \pause
+\item {\color{red}1 долар $\rightarrow$ 1 кафе в България } \pause
+\item Същото става, ако вместо цената на кафето се промени валутният курс:  1 долар = 1 лев
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Номинален и реален валутен курс}
+\framesubtitle{}
+\begin{itemize}
+\item Примерът показва, че освен номиналния валутен курс трябва да се отчита и динамиката на цените в страните, за да направим заключения за истинското поскъпване или поевтиняване
+\item На макро ниво вместо цени се използват подходящи ценови индекси (имаме много стоки)
+\item Валутният курс, коригиран с някакви измерители на инфлацията в страната и в чужбина, се нарича \emph{реален валутен курс}
+\item Тази процедура представлява дефлиране на съответните
+валути с ценови индекси за двете страни, така че динамиката на
+валутния курс да се следи с левове и долари ,,по постоянни
+цени''
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Реален валутен курс}
+\framesubtitle{Дефиниция}
+\beq \textrm{RER}_{t,t-j}:=\frac{\textrm{NER}_t \times P^*_{t,t-j}}{P_{t,t-j}}, \label{eq:RER}\eeq
+където $\textrm{NER}_t$ е номиналният валутен курс в период $t$, а $P_{t,t-j}$ и $P^*_{t,t-j}$ са дефлиращите коефициенти (т.е. ценовите индекси) съответно за местната и чуждата икономика за период $t$ при база период $t-j$
+\end{frame}
+
+\begin{frame}
+\frametitle{Реален валутен курс}
+\framesubtitle{}
+\begin{itemize}
+\item Интуиция: $$\textrm{NER}_t =\textrm{lc}_t/\textrm{fc}_t,$$ където $\textrm{lc}_t$ е местната валута, $\textrm{fc}_t$ е чуждата валута. Тогава 
+$$\textrm{RER}_{t,t-j}=\frac{\frac{\textrm{lc}_t}{P_{t,t-j}}}{\frac{\textrm{fc}_t}{P^*_{t,t-j}}}.$$ 
+\item Интерпретация: съотношение на даден брой единици местна валута към единица чужда валута, където и двете валути са приведени (дефлирани) към цените от базисния период $t-j$
+\item  В зависимост от целите на анализа за дефлиране могат да се използват индекси, базирани на различни показатели като потребителски цени, заплати, разходи за труд и пр.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Реален валутен курс}
+\framesubtitle{}
+
+\begin{itemize}
+\item Реалният валутен курс се сравнява с валутния курс през
+базисния период, за да има смисъл т.е. в индексна форма или като процентно изменение
+\item  Това показва дали местната валута поскъпва или поевтинява в реално изражение спрямо чуждата между двата периода
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ефективни валутни курсове}
+\framesubtitle{Обща постановка}
+\begin{itemize}
+\item Местната валута се разменя срещу валутите на много други страни
+\item Следователно трябва да работим с цял набор от валутни курсове или да агрегираме различните курсове до един показател
+\item Агрегираният показател се нарича \emph{ефективен валутен курс}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ефективни валутни курсове}
+\framesubtitle{Пресмятане}
+\begin{itemize}
+\item За да можем да агрегираме, трябва отделните курсове да са превърнати в индексна форма
+\item Необходимо е също да се отчете важността на съответната валута за местната икономика (евро $\leftrightarrow$ датска крона)
+\item ,,Важност'' се отчита чрез използване на подходящи тегла
+\item Изборът на тегла зависи от целите на анализа
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Ефективни валутни курсове}
+\framesubtitle{Пресмятане}
+Индекс на номиналния ефективен валутен курс за период $t$ (при база период $t-j$): \beq \textrm{EER}_{t,t-j}=\sum_{i=1}^{k} w_i
+\frac{\textrm{NER}_{i,t}}{\textrm{NER}_{i,t-j}},
+\label{eq:EER}\eeq където $k$ е броят на валутите, $w_i$ са
+теглата, а $\textrm{NER}_{i,t}$ е номиналният валутен курс за
+страна $i$ в период $t$
+\end{frame}
+
+\begin{frame}
+\frametitle{Реални ефективни валутни курсове}
+\framesubtitle{}
+\begin{itemize}
+\item Ефективен валутен курс може да се изчисли както с използване на номинални валутни курсове, така и с реални курсове
+\item Индекс на реалния ефективен валутен курс за период $t$ при база период $t-j$ се дефинира като \beq\textrm{REER}_{t,t-j}=\sum_{i=1}^{k} w_i \frac{\textrm{NER}_{i,t}}{\textrm{NER}_{i,t-j}}\times \frac{P^*_{i,t,t-j}}{P_{t,t-j}}, \label{eq:REER}\eeq където $P^*_{i,t,t-j}$ е индексът, показващ изменението на ценовите равнища между периоди $t-j$ и $t$ за $i$-тата валута
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Индекс на реалния ефективен валутен курс за българския лев за 2004-2006 г., юни 1997 г.=100}
+\framesubtitle{}
+\begin{figure}[htbp]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=0.75\textwidth]{REERindex}
+\end{figure}
+\end{frame}
+
+\end{document}

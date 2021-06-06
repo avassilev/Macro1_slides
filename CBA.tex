@@ -1,0 +1,803 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+\DeclareMathOperator*{\const}{const}
+% \setbeamercovered{transparent}
+\title[Паричен съвет]{Парични съвети. Моделиране на българския паричен съвет}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основни въпроси}
+\framesubtitle{}
+\begin{itemize}
+\item Понятие за пари и функции на парите
+\item Режим на паричен съвет: общи положения и институционални особености за случая на България
+\item Опростен модел на българския паричен съвет
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Какво представляват парите?}
+\framesubtitle{}
+\begin{itemize}
+\item Първи, елементарен отговор: банкнотите и монетите, с които разполагаме
+\item Имам ли пари, ако не разполагам с банкноти и монети, но имам дебитна карта? Сметка в банка?
+\item А ако някой е написал чек на мое име?
+\end{itemize} \bigskip
+
+\textbf{Какво определя нещо като ,,пари'' зависи не от формата, а от функциите му.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Функции на парите}
+\framesubtitle{}
+\begin{itemize}
+\item Средство за размяна (medium of exchange)
+\item Мерна (разчетна) единица (unit of account)
+\item Съхранител на стойност (store of value)
+\item {\color{gray}Стандарт за отложено плащане (standard of deferred payment)}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Функции на парите}
+\framesubtitle{Средство за размяна}
+\begin{itemize}
+\item Икономика с размяна в натура (бартер) 
+\item Как производител на месо може да се сдобие с дрехи -- двойно съвпадение на нуждите
+\item По-сложни вериги на размяна
+\item Полза от общоприето средство за размяна
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Функции на парите}
+\framesubtitle{Мерна (разчетна) единица}
+\begin{itemize}
+\item В бартерна икономика с $n$ стоки, трябва да знаем $\frac{n(n-1)}{2}$ обменни съотношения между стоките
+\item В икономика с пари трябва да знаем $n$-те цени на съответните стоки
+\item Това е по-ефективно от информационна гледна точка
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Функции на парите}
+\framesubtitle{Съхранител на стойност}
+\begin{itemize}
+\item Производител на бързо развалящи се стоки
+\item Ако няма необходимост да потребява в даден момент, трябва да продаде продукцията си, да закупи по-дълготрайна продукция, която да продава, когато дойде време да потребява
+\item Ако търговията е на отдалечено място, стоката трябва да бъде лесно преносима
+\item Следователно един ефективен съхранител на стойност трябва да бъде дълготраен и (в общия случай) преносим
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Функции на парите}
+\framesubtitle{Стандарт за отложено плащане}
+\begin{itemize}
+\item Производна функция от първите три
+\item Задължения, които трябва да бъдат погасени в бъдещето, традиционно се мерят в пари
+\item С други думи, парите са типичния начин, по който се погасяват задължения
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Допълнителни пояснения}
+\framesubtitle{}
+\begin{itemize}
+\item Ролята на пари могат да изпълняват най-разнообразни обекти
+	\begin{itemize}
+	\item сол
+	\item ценни подправки
+	\item благородни метали
+	\item специални обекти (цигари, камъни, ...)
+	\end{itemize}
+\item В определени случаи дали даден обект може да бъде считан за пари или не е въпрос на интерпретация
+\item Това дава възможност за въвеждане на класификации с различна степен на строгост (например по степен на ликвидност)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Пример: парични агрегати (1)}
+\framesubtitle{(на база паричен отчет)}
+\begin{itemize}
+\item Пари извън ПФИ = банкнотите и монетите в обращение в
+икономиката (тези, които се държат от небанковите
+икономически агенти)
+\item Oвърнайт-депозити = депозити, които нямат определен срок и
+могат незабавно да се конвертират в пари в брой или да се
+преведат чрез банково нареждане или чек без ограничения или
+санкции. Депозитите до 1 ден се причисляват към
+овърнайт-депозитите.
+\item Квазипари = депозити с договорен матуритет до 2 години
+и депозити, договорени за ползване след предизвестие
+(включително спестовни депозити), до 3 месеца
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Пример: парични агрегати (2)}
+\framesubtitle{(на база паричен отчет)}
+\begin{itemize}
+\item Търгуеми инструменти = нисколиквидни финансови
+инструменти (издадените дългови ценни книжа до
+2 години, акциите и дялове на фондовете на паричния пазар и
+репо-сделките (споразумения за предоставяне на пари срещу ценни
+книжа, но с ангажимент за обратното им изкупуване)).
+\item Широки пари M3 (парично предлагане)
+\item Основни връзки:
+\[ \text{пари извън ПФИ} + \text{овърнайт-депозити} = \text{М1} \]
+\[ \text{М1} + \text{квазипари} = \text{М2} \]
+\[ \text{М2} + \text{търгуеми инструменти} = \text{М3} \]
+\end{itemize}
+\end{frame}
+
+\begin{frame}\newcounter{slidenum}\setcounter{slidenum}{1}
+\frametitle{Парични съвети (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}
+\item Паричен съвет -- вид режим на
+парична политика, при който централната банка изпълнява
+по-специфични (по-ограничени) функции в сравнение с традиционните централни
+банки
+\item Съществуват различни реализации на идеята за паричен съвет 
+	\begin{itemize}
+	\item ,,ортодоксални'' и ,,неортодоксални'' парични съвети
+	\end{itemize} 
+\item Българската икономика функционира в условията на паричен съвет от юли 1997 г. до днес
+\item Функционирането на паричния съвет е уредено със Закона за БНБ
+\end{itemize}
+\end{frame}
+
+\stepcounter{slidenum}
+\begin{frame}\frametitle{Парични съвети (\arabic{slidenum})}
+\framesubtitle{Основни принципи}
+\begin{itemize}
+\item Фиксиране на валутния курс на местната валута към дадена чужда валута (резервна
+валута)
+	\begin{itemize}
+	\item В случая на България курсът на българския лев спрямо
+	еврото е фиксиран в Закона за БНБ на 1.95583 лева за евро
+	\item Централната банка е длъжна да обменя без ограничения
+	левове срещу резервната валута евро по фиксирания в закона
+	валутен курс
+	\end{itemize}
+\item Паричните задължения на централната банка трябва да имат пълно покритие с валутните резерви на страната
+\end{itemize}
+\end{frame}
+
+
+\stepcounter{slidenum}
+\begin{frame}\frametitle{Парични съвети (\arabic{slidenum})}
+\framesubtitle{Основни принципи}
+\begin{itemize}
+\item Дефинициите на парични задължения се различават между отделните режими на паричен съвет
+	\begin{itemize}
+	\item Като минимум следва да се покриват банкнотите и монетите в обращение
+	\item В случая на България паричните задължения на БНБ включват: 
+		\begin{itemize}
+		\item банкнотите и монетите в обращение
+		\item задължения към банки (резерви, които банките държат в централната банка)
+		\item задължения към правителството и бюджетни организации
+		\item задължения към други депозанти
+		\end{itemize}
+	\end{itemize}
+\item Счетоводно това се реализира чрез баланса на един
+паричен съвет (баланс на управление ,,Емисионно'' към БНБ)
+	\begin{itemize}
+	\item активи = валутни резерви
+	\item пасиви = парични задължения на централната банка
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Баланс на управление ,,Емисионно'' към БНБ, млн. лева}
+\framesubtitle{}
+\begin{tabular}{l r r r}
+\addlinespace
+\toprule
+      & \textbf{2010}  & \textbf{2011}  & \textbf{2012} \\
+\midrule
+АКТИВИ & 25380  & 26108  & 30418 \\
+Парични средства  & 5686  & 6722  & 9376 \\
+\quad и депозити в чужда валута &  &  &  \\
+Монетарно злато  & 2669  & 3053  & 3163 \\
+\quad и инструменти в монетарно злато &  &  &  \\
+Инвестиции в ценни книжа & 17025  & 16332  & 17879 \\
+ПАСИВИ & 25380  & 26108  & 30418 \\
+Банкноти и монети в обращение & 8302  & 8729  & 9550 \\
+Задължения към банки & 5812  & 6178  & 7843 \\
+Задължения към правителството  & 5400  & 4359  & 5811 \\
+\quad и бюджетни организации &  &  &  \\
+Задължения към други депозанти & 505   & 1007  & 1224 \\
+Депозит на управление ,,Банково'' & 5361  & 5835  & 5990 \\
+\bottomrule  Източник: БНБ
+\end{tabular}
+\end{frame}
+
+\begin{frame}\setcounter{slidenum}{1}
+\frametitle{Следствия от режим на паричен съвет (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}
+\item Парите в икономиката не могат да се изменят произволно (напр. като се отпечатват без ограничения по усмотрение на правителството и централната банка)
+\item За емитиране на пари трябва да има насрещни наличности от резервна валута
+\item Пример: как могат да нараснат банкнотите и монетите в обращение?
+	\begin{enumerate}
+	\item  Ако в икономиката влизат финансови средства от
+	чужбина (което ще доведе до нарастване на валутните резерви,
+	т.е. и активите, и пасивите ще се увеличат)
+	\item Ако се използват други пера от пасивната страна на баланса на паричния
+	съвет (при което общата сума на активите и пасивите може да
+	остане непроменена)
+		\begin{itemize}
+		\item По искане на правителството се правят плащания от
+		неговия депозит, което води до увеличение на парите в обращение
+		\end{itemize}
+	\end{enumerate}
+\end{itemize}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Следствия от режим на паричен съвет (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}
+\item При всички случаи в предходния пример изменението на парите става при съответно наличие на резервна валута... 
+\item ...следователно динамиката им в крайна сметка е
+обвързана с динамиката на платежния баланс
+\item Обикновено при паричен съвет централната банка не може
+да финансира правителството и търговските банки
+	\begin{itemize}
+	\item За случая на България финансиране на търговски банки е възможно при специални обстоятелства -- възникване на риск от системно значение, но срещу подходящо обезпечение от съответните банки
+	\item Пример за финансиране на правителството от централната банка
+		\begin{itemize}
+		\item Ако централната банка може да държи ценни книжа, издадени от правителството, като активи (макар да не са валутни резерви)
+		\item Тогава правителството издава емисия облигации, която се изкупува от централната банка
+		\item Централната банка отпечатва необходимите за закупуването на емисията пари
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Следствия от режим на паричен съвет (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}
+\item При паричен съвет централната банка не провежда пълноправна парична политика
+\item В частност, стандартно не се предлагат възможности за финансиране на търговските банки и не се определят съответните лихвени проценти
+\item Тогава лихвените проценти и цените в местната икономика би следвало да
+отразяват динамиката на лихви и инфлация в икономиката, чиято валута е избрана за резервна
+\item Правата на централните банки да
+предприемат мерки на паричната политика се
+различават за различните парични съвети
+	\begin{itemize}
+	\item В България централната банка има право да определя минимални задължителни
+	резерви за търговските банки
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Модел на паричния съвет в България}
+\framesubtitle{Общи положения}
+\begin{itemize}
+\item Вариант на IS-MP-PC модел за малка отворена икономика
+\item Подобно на стандартния IS-MP-PC модел има опростена структура
+\item Изследването е на два етапа:
+	\begin{enumerate}
+	\item С модифицирани варианти на IS и PC връзките се моделират инфлацията $ \pi_t $ и отклонението от потенциалното производство $ \hat{y}_t $
+	\item Допълнително се моделират международните валутни резерви $ F_t $, парите в обращение $ M_t $ и депозита на правителството в централната банка $ \Gamma_t $
+	\end{enumerate}
+\item Ще приемем, че в момент $ t-1 $ икономиката се намира в равновесие и ще изследваме реакцията \`и при шокове в момент $t$
+\item Има само един икономически (и в частност търговски) партньор -- икономиката на страната или региона, чиято валута се използва за резервна при конструирането на паричния съвет
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Използвани означения}
+\framesubtitle{}
+Процентното изменение на дадена величина $X_t$ спрямо стойността \`{и} в предходния период означаваме с $\mathring{X}_t$, т.е. $$\mathring{X}_t:=\dfrac{X_t-X_{t-1}}{X_{t-1}}.$$ 
+Процентното изменение на една величина $X_t$ спрямо равновесното \`{и} състояние $\bar{X}_t$ в същия период означаваме по познатия начин с $\hat{X}_t$: \[ \hat{X}_t := \dfrac{X_t-\bar{X}_t}{\bar{X}_t}. \]
+
+При $X_{t-1}=\bar{X}_{t-1}$ имаме връзката \begin{equation}
+\begin{split}
+\mathring{X}_t=&\dfrac{X_t}{X_{t-1}}-1=\dfrac{X_t}{\bar{X}_{t-1}}-1=\dfrac{X_t}{\bar{X}_{t}}\dfrac{\bar{X}_t}{\bar{X}_{t-1}}-1\\ =& \left (1+\hat{X}_t\right )\left (1+\mathring{\bar{X}}_t\right )-1.
+\end{split}
+\label{eq:pchlogdev}
+\end{equation}
+\end{frame}
+
+\begin{frame}\setcounter{slidenum}{1}
+\frametitle{Формулировка на модела (\arabic{slidenum})}
+\framesubtitle{}
+Ще приемем, че в период $t$ потенциалното производство $\bar{Y}_{t}$ и равновесната траектория на ценовото равнище $\bar{P}_t$ за разглежданата икономика се задават от 
+\begin{equation}
+\bar{Y}_t=(1+\bar{\gamma})\bar{Y}_{t-1}, \quad \bar{Y}_0 \text{ -- дадено,}
+\label{eq:cbaYbar}
+\end{equation}
+\begin{equation}
+\bar{P}_t=(1+\bar{\pi})\bar{P}_{t-1},\quad \bar{P}_0 \text{ -- дадено,}
+\label{eq:cbaPbar}
+\end{equation}
+където $\bar{\gamma}$ и $\bar{\pi}$ са съответно растежът на потенциалния продукт и равновесната инфлация. 
+
+Аналогични връзки са в сила за потенциалния продукт и инфлацията в чуждата икономика (означени със звезда ($ * $)) .
+
+Тук ще използваме само връзката за равновесната траектория на ценовото равнище в референтната чужда икономика:
+\begin{equation}
+\bar{P}^*_t=(1+\bar{\pi}^*)\bar{P}^*_{t-1},\quad \bar{P}^*_0 \text{ -- дадено.}
+\label{eq:cbaPbarStar}
+\end{equation}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Формулировка на модела (\arabic{slidenum})}
+\framesubtitle{}
+От \eqref{eq:pchlogdev} следват връзките \[ \pi_t(:=\mathring{P}_t)=(1+\hat{P}_t)(1+\bar{\pi})-1 \] и \[ \mathring{Y}_t = (1+\hat{y}_t)(1+\bar{\gamma})-1 .\]\bigskip
+
+За компактност на използваните формули ще означаваме номиналния валутен курс с $S_t$, а реалния валутен курс -- с $ Q_t $. Имаме
+\begin{equation}
+Q_t=\frac{S_t P^*_t}{P_t},
+\label{eq:cbaRER_Q}
+\end{equation}където с $ P^*_t $ е означено чуждестранното ценово равнище.
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Формулировка на модела (\arabic{slidenum})}
+\framesubtitle{}
+При условия на паричен съвет сме с фиксиран валутен курс, т.е. $ S_t \equiv \const, \forall t \geq 0 $. \bigskip
+
+Приемаме, че $ S_t \equiv \bar{S}_t \equiv \bar{S} $ и съответно \[ \bar{Q}_t=\frac{\bar{S} \bar{P}^*_t}{\bar{P}_t},\qquad Q_t=\frac{\bar{S} P^*_t}{P_t}. \] \bigskip
+
+Отклонението на реалния валутен курс от равновесието е \[  \hat{q}_t := \dfrac{Q_t}{\bar{Q}_t}-1 \]
+
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Формулировка на модела (\arabic{slidenum})}
+\framesubtitle{IS връзка}
+Познатата IS връзка добива вида
+\begin{equation}
+\hat{y}_t=A - a r_t + b \hat{q}_t + c \hat{g}_t + \varepsilon_{1,t},
+\label{eq:cbaIS}
+\end{equation}
+където $ \hat{g}_t $ е отклонението на правителствените разходи $ G_t $ в реално изражение от съответната им равновесна стойност.\bigskip
+
+Защо включваме $ \hat{q}_t $ и $ \hat{g}_t $ в IS връзката?
+\begin{itemize}
+\item Ефект от реалния валутен курс
+\item Ефект от правителствените разходи
+\end{itemize}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Формулировка на модела (\arabic{slidenum})}
+\framesubtitle{PC връзка}
+Модификацията на PC връзката има вида:
+\begin{equation}
+\pi_t = \bar{\pi} + d \hat{y}_t +e \hat{q}_t + \varepsilon_{2,t}.
+\label{eq:cbaPC}
+\end{equation}
+
+Добавянето на $ \hat{q}_t $ е с цел отчитане на възможността за пренасяне на измененията в реалния валутен курс върху цените на местните стоки и услуги. Така в модифицираната крива на Филипс се включват два ефекта: 
+\begin{itemize}
+\item ефект, произтичащ от цикличната позиция на местната икономика чрез $ \hat{y}_t $ (както в случая на затворена икономика)
+\item директен ценови ефект през валутния курс, проявяващ се чрез $ \hat{q}_t $
+\end{itemize}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Формулировка на модела (\arabic{slidenum})}
+\framesubtitle{}
+Отклонението $ \hat{q}_t $ пресмятаме, използвайки \eqref{eq:cbaRER_Q}:
+\begin{equation*}
+\begin{split}
+\dfrac{Q_t}{\bar{Q}_t}=&\dfrac{P^*_t}{P_t}\dfrac{\bar{P}_t}{\bar{P}_t^*}=\dfrac{\bar{P}_{t-1}^*(1+\pi^*_t)}{\bar{P}_{t-1}(1+\pi_t)}\dfrac{\bar{P}_{t-1}(1+\bar{\pi})}{\bar{P}^*_{t-1}(1+\bar{\pi}^*)}=\dfrac{1+\pi^*_t}{1+\bar{\pi}^*} \dfrac{1+\bar{\pi}}{1+\pi_t} \\
+\approx &(1+\pi^*_t-\bar{\pi}^*)(1+\bar{\pi}-\pi_t)\approx \pi^*_t - \pi_t - (\bar{\pi}^* - \bar{\pi}) + 1 =: \hat{q}_t+1 ,
+\end{split}
+\end{equation*}
+където за получаването на втория ред е използвано това, че за връзка от вида $ 1+z = (1+x)/(1+y) $ при малки стойности на $ x $ и $ y $ може да се приложи приближението $ 1+z \approx 1+x-y $.\bigskip
+
+Така стигаме до връзката (приближено!)
+\begin{equation}
+\hat{q}_t = \pi^*_t - \pi_t - (\bar{\pi}^* - \bar{\pi}).
+\label{eq:cbaRER}
+\end{equation}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Формулировка на модела (\arabic{slidenum})}
+\framesubtitle{}
+Приближено равенство за реалния лихвен процент в местната икономика:
+\begin{equation}
+r_t \approx i_t - \pi_t .
+\label{eq:cbaRealIntRate}
+\end{equation}
+
+Приближено равенство за реалния лихвен процент в референтната чужда икономика или регион: \begin{equation}
+r_t^* \approx i_t^* - \pi_t^*.
+\label{eq:cbaRealIntRateStar}
+\end{equation}\bigskip   
+
+Ще приемем, че централната банка в икономиката, чиято валута се използва за резервна, може да контролира точно динамиката на $ r^*_t $, използвайки $ i^*_t $ като инструмент.
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Формулировка на модела (\arabic{slidenum})}
+\framesubtitle{}
+Номиналният лихвен процент за местната икономика се формира от чуждестранния номинален лихвен процент плюс рискова премия:
+\begin{equation}
+i_t = i^*_t + f \hat{g}_t .
+\label{eq:cbaNomIntRate}
+\end{equation}\bigskip
+
+Предвид важността на фискалната политика за устойчивостта на един режим на фиксиран валутен курс, рисковата премия се определя на база отклонението на реалните правителствени разходи от равновесното им равнище.
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Формулировка на модела (\arabic{slidenum})}
+\framesubtitle{Обобщение}
+\begin{equation}
+\bar{Y}_t=(1+\bar{\gamma})\bar{Y}_{t-1}, \quad \bar{Y}_0 \text{ -- дадено,}
+\tag{\ref{eq:cbaYbar}}
+\end{equation}
+\begin{equation}
+\bar{P}_t=(1+\bar{\pi})\bar{P}_{t-1},\quad \bar{P}_0 \text{ -- дадено,}
+\tag{\ref{eq:cbaPbar}}
+\end{equation}
+\begin{equation}
+\bar{P}^*_t=(1+\bar{\pi}^*)\bar{P}^*_{t-1},\quad \bar{P}^*_0 \text{ -- дадено,}
+\tag{\ref{eq:cbaPbarStar}}
+\end{equation}
+\begin{equation}
+\hat{y}_t=A - a r_t + b \hat{q}_t + c \hat{g}_t + \varepsilon_{1,t},
+\tag{\ref{eq:cbaIS}}
+\end{equation} 
+\begin{equation}
+\pi_t = \bar{\pi} + d \hat{y}_t +e \hat{q}_t + \varepsilon_{2,t},
+\tag{\ref{eq:cbaPC}}
+\end{equation}
+
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Формулировка на модела (\arabic{slidenum})}
+\framesubtitle{Обобщение}
+\begin{equation}
+\hat{q}_t = \pi^*_t - \pi_t - (\bar{\pi}^* - \bar{\pi}),
+\tag{\ref{eq:cbaRER}}
+\end{equation}
+\begin{equation}
+r_t \approx i_t - \pi_t ,
+\tag{\ref{eq:cbaRealIntRate}}
+\end{equation}
+\begin{equation}
+r_t^* \approx i_t^* - \pi_t^*,
+\tag{\ref{eq:cbaRealIntRateStar}}
+\end{equation} 
+\begin{equation}
+i_t = i^*_t + f \hat{g}_t .
+\tag{\ref{eq:cbaNomIntRate}}
+\end{equation}
+\end{frame}
+
+
+\begin{frame}\setcounter{slidenum}{1}
+\frametitle{Пресмятане на основните величини в модела (\arabic{slidenum})}
+\framesubtitle{}
+От уравнения \eqref{eq:cbaPC} и \eqref{eq:cbaRER} получаваме 
+\begin{align}
+\pi_t = \bar{\pi} + d \hat{y}_t + e [\pi_t^*-\pi_t-(\bar{\pi}^*-\bar{\pi})] + \varepsilon_{2,t}\Rightarrow \nonumber \\
+\pi_t = \bar{\pi} + \frac{d}{1+e}\hat{y}_t + \frac{e}{1+e}(\pi^*_t - \bar{\pi}^*) + \frac{1}{1+e}\varepsilon_{2,t}. \label{eq:cbaInfl(yhat)}
+\end{align}
+
+След заместване на \eqref{eq:cbaRER}, \eqref{eq:cbaRealIntRate} и \eqref{eq:cbaNomIntRate} в уравнение \eqref{eq:cbaIS} получаваме \[ \hat{y}_t = A - a [r^*_t + \pi^*_t + f \hat{g}_t -\pi_t] + b[\pi^*_t - \pi_t - (\bar{\pi}^* - \bar{\pi})] + c \hat{g}_t + \varepsilon_{1,t}, \] откъдето имаме
+\begin{equation}
+\begin{split}
+\hat{y}_t = & A - a r^*_t + (b-a)\pi^*_t + (c-af)\hat{g}_t + \\
+&(a-b)\pi_t - b (\bar{\pi}^*-\bar{\pi}) + \varepsilon_{1,t}. 
+\end{split}
+\label{eq:cbayhat(Infl)}
+\end{equation}\bigskip
+
+От последната формула е необходимо да се елиминира инфлацията, за да изразим $ \hat{y}_t $ като функция на параметрите и екзогенните променливи.
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Пресмятане на основните величини в модела (\arabic{slidenum})}
+\framesubtitle{}
+Заместваме \eqref{eq:cbaInfl(yhat)} в \eqref{eq:cbayhat(Infl)} и след преобразуване получаваме:
+\begin{equation}
+\begin{split}
+\hat{y}_t=&\frac{1+e}{1+e-d(a-b)}(A-ar^*_t)+\frac{(1+e)(c-af)}{1+e-d(a-b)}\hat{g}_t+\\
+&\frac{b-a}{1+e-d(a-b)}\pi_t^* - \frac{b+ae}{1+e-d(a-b)}\bar{\pi}^* +\\
+&\frac{(1+e)a}{1+e-d(a-b)} \bar{\pi} + \frac{1+e}{1+e-d(a-b)}\varepsilon_{1,t} + \\
+& \frac{a-b}{1+e-d(a-b)}\varepsilon_{2,t}.
+\end{split}
+\label{eq:cbayhat}
+\end{equation}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Пресмятане на основните величини в модела (\arabic{slidenum})}
+\framesubtitle{}
+Алтернативен начин на записване на последното уравнение с по-лесна икономическа интерпретация, е 
+\begin{equation}
+\begin{split}
+\hat{y}_t=&\frac{1+e}{1+e-d(a-b)}(A-ar^*_t)+\frac{(1+e)(c-af)}{1+e-d(a-b)}\hat{g}_t+\\
+&\frac{b-a}{1+e-d(a-b)}(\pi_t^*-\bar{\pi}^*) + \\
+&\frac{(1+e)a}{1+e-d(a-b)} (\bar{\pi}-\bar{\pi}^*) + \\
+& \frac{1+e}{1+e-d(a-b)}\varepsilon_{1,t} +  \frac{a-b}{1+e-d(a-b)}\varepsilon_{2,t}.
+\end{split}
+\label{eq:cbayhat1}
+\end{equation}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Пресмятане на основните величини в модела (\arabic{slidenum})}
+\framesubtitle{}
+За пресмятане на инфлацията заместваме \eqref{eq:cbayhat} в \eqref{eq:cbaInfl(yhat)} и  преобразуваме: 
+\begin{equation}
+\begin{split}
+\pi_t = & \dfrac{1+e+db}{1+e-d(a-b)} \bar{\pi} + \dfrac{d}{1+e-d(a-b)}(A-a r^*_t) +\\
+& \dfrac{d(c-af)}{1+e-d(a-b)}\hat{g}_t + \dfrac{e-d(a-b)}{1+e-d(a-b)}\pi^*_t -\\
+& - \dfrac{db+e}{1+e-d(a-b)}\bar{\pi}^* + \\
+& \dfrac{d}{1+e-d(a-b)}\varepsilon_{1,t} + \dfrac{1}{1+e-d(a-b)}\varepsilon_{2,t.}
+\end{split}
+\label{eq:cbaInfl}
+\end{equation}
+\end{frame}
+
+\begin{frame}\setcounter{slidenum}{1}
+\frametitle{Икономическа интерпретация и следствия (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}
+\item При отсъствието на специално провеждана икономическа политика, върху $ \pi_t $ и $ \hat{y}_t $ ще влияят шоковете и от страната на търсенето, и от страната на предлагането
+\item Чрез $ r_t^* $ има механизъм за трансмисия на паричната политика на страната или региона, осигуряващ резервната валута, в местната икономика
+\item Ефектите от увеличаване на разходите на правителството над равновесната им стойност се проявяват по два канала:
+	\begin{itemize}
+	\item директни ефекти върху производството ($ c $)
+	\item отрицателно въздействие върху цената на финансирането ($ -af $) през рисковата премия
+	\end{itemize} 
+\item Върху $ \hat{y}_t $ влияят отклонението на инфлацията от равновесието \`и за чуждестранната икономика и разликата в равновесните стойности на инфлацията между местната и чуждестранната икономика
+\end{itemize}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Икономическа интерпретация и следствия (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}
+\item Един вариант производството в икономиката да е на потенциалната си стойност е да имаме $ r^*_t=\frac{A}{a} $, $ \hat{g}_t=0 $, $ \pi_t^*=\bar{\pi}^*=\bar{\pi} $ и да отсъстват шокове
+\item Ако обаче $ \bar{\pi}=\bar{\pi}^*+\delta $, за дадено $ \delta>0 $, то и при $ \varepsilon_{1,t}=\varepsilon_{2,t}=0 $, $ \hat{g}_t=0 $, $ r^*_t=\frac{A}{a} $ и $ \pi^*_t=\bar{\pi}^* $ ще имаме \[ \hat{y}_t=\frac{(1+e)a\delta}{1+e-d(a-b)}. \] 
+\item Ако освен това е изпълнено $ c-af>0 $, (т.е. доминира реален, а не ,,ценови''  -- поради оскъпеното финансиране -- ефект от правителствените разходи), то можем да изберем $ (1+e)(c-af)\hat{g}_t=-(1+e)a\delta $ или, еквивалентно, \[ \hat{g}_t=-\frac{a\delta}{c-af}. \] \item Интерпретация: можем да компенсираме ефектите от разликата в инфлационните трендове чрез свиване на правителствените разходи
+\end{itemize}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Икономическа интерпретация и следствия (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}
+\item По-общо, фискалната политика може да реагира и на други обстоятелства, предизвикващи отклонение от равновесието
+\item Например при $ r_t^* < \frac{A}{a} $, т.е. ,,разхлабени'' монетарни условия, привнесени от външната икономика, фискалната политика би могла да компенсира чрез по-ниски от равновесните правителствени разходи, т.е. $ \hat{g}_t<0 $
+\item Доколкото в условия на паричен съвет не се провежда активна парична политика, евентуална реакция на икономическата политика може да дойде по линия на фискалната политика
+\end{itemize}
+\end{frame}
+
+\begin{frame}\setcounter{slidenum}{1}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}
+\item Дотук изследвахме реакциите на инфлацията и на отклонението от потенциалното производство при промени в екзогенните величини
+\item Сега ще добавим рамка за моделиране на изменението на международните валутни резерви, съобразена с паричния съвет в България
+\end{itemize}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+В стилизиран вид балансът на управление ,,Емисионно'' в БНБ може да се разглежда като равенство между международните валутни резерви $ F_t $ от активната страна и парите в обращение $ M_t $ и депозита на правителството в БНБ $ \Gamma_t $, от пасивната страна:
+\begin{equation}
+F_t = M_t+ \Gamma_t .
+\label{eq:cbaIntRes}
+\end{equation}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+Уравнение за скоростта на парично обращение:
+\begin{equation}
+M_t V = P_t Y_t. 
+\label{eq:cbaMonVel}
+\end{equation} 
+
+Скоростта на парично обращение $ V $ се приема за постоянна.
+\end{frame}
+
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+За изменението на валутните резерви имаме
+\begin{equation}
+\begin{split}
+\mathring{F}_t = &  \frac{F_t}{F_{t-1}}-1 = \frac{M_t +\Gamma_t}{F_{t-1}}-1  \\ & \\
+=& \frac{M_t}{M_{t-1}}\frac{M_{t-1}}{F_{t-1}} + \frac{\Gamma_t}{\Gamma_{t-1}}\frac{\Gamma_{t-1}}{F_{t-1}}-1  \\ & \\
+=& \mathring{M}_t\frac{M_{t-1}}{F_{t-1}} + \mathring{\Gamma}_t \frac{\Gamma_{t-1}}{F_{t-1}}.
+\end{split}
+\label{eq:cbaIntResChange}
+\end{equation}\bigskip
+
+Трябва да пресметнем $ \mathring{M}_t $ и $ \mathring{\Gamma}_t $.
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+Ако в период $ t-1 $ сме в равновесие, то за процентното изменение на $ M_t $ във времето имаме:
+\begin{equation}
+\begin{split}
+\mathring{M}_t = & \frac{M_t}{M_{t-1}}-1 = \frac{\frac{1}{V}P_t Y_t}{\frac{1}{V}\bar{P}_{t-1}\bar{Y}_{t-1}}-1 \\ & \\
+=& \frac{\bar{P}_{t-1}(1+\pi_t)\bar{Y}_{t-1}(1 + \mathring{Y}_t)} {\bar{P}_{t-1}\bar{Y}_{t-1}}-1  \\ & \\
+=&(1+\pi_t)(1+\mathring{Y}_t)-1  \\ & \\
+=& (1+\pi_t)(1+\hat{y}_t)(1+\bar{\gamma})-1.
+\end{split}
+\label{eq:cbaMChange}
+\end{equation}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+Динамиката на правителствения депозит в БНБ се задава от:
+\begin{equation}
+\begin{split}
+\Gamma_t = & \Gamma_{t-1} + P_t T_t - P_t G_t =  \Gamma_{t-1} + \Delta_t ,
+\end{split}
+\label{eq:cbaGamma}
+\end{equation} където са използвани означенията:
+\begin{itemize}
+\item Номинални бюджетни приходи: $ P_t T_t $
+\item Номинални бюджетни разходи: $ P_t G_t $
+\item Реални бюджетни приходи: $ T_t $
+\item Реални бюджетни разходи: $ G_t $
+\item Бюджетно салдо: $ \Delta_t $, т.е. \newline
+$ \Delta_t := P_t T_t - P_t G_t $
+\end{itemize}
+
+При тези означения е в сила $ \hat{g}_t := \frac{G_t}{\bar{G}_t}-1 $.
+
+Тогава \begin{equation}
+\mathring{\Gamma}_t=\frac{\Delta_t}{\Gamma_{t-1}}.
+\label{eq:cbaGammaChange}
+\end{equation}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+Допълнителни допускания:
+\begin{itemize}
+\item  Бюджетните приходи са фиксиран дял от номиналния БВП, т.е. $ P_t T_t = \tau P_t Y_t $. Тогава $ T_t = \tau Y_t $, откъдето $ \mathring{T}_t = \mathring{Y}_t $.
+\item Върху равновесната траектория на развитие съотношението между правителствен депозит в централната банка и номинален БВП е постоянно, т.е. \begin{equation}
+\frac{\bar{\Gamma}_t}{\bar{P}_t\bar{Y}_t} = \phi = \const >0,~\forall t.
+\label{eq:cbaGammabarConst}
+\end{equation}
+\end{itemize}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+Тогава 
+\begin{equation*}
+\begin{split}
+&\frac{\bar{\Gamma}_t}{\bar{P}_t \bar{Y}_t} = \frac{\bar{\Gamma}_{t-1}}{\bar{P}_{t-1} \bar{Y}_{t-1}} \Rightarrow \frac{\bar{\Gamma}_t}{\bar{\Gamma}_{t-1}} = (1+\bar{\pi}) (1+\bar{\gamma}) = 1+\frac{\bar{\Delta}_t/\bar{P}_t\bar{Y}_t}{\bar{\Gamma}_{t-1}/\bar{P}_t\bar{Y}_t} \Rightarrow \\ & \\
+&
+\frac{\dfrac{\bar{\Delta}_t}{\bar{P}_t\bar{Y}_t}}{\dfrac{\bar{\Gamma}_{t-1}}{\bar{P}_{t-1} \bar{Y}_{t-1}(1+\bar{\pi}) (1+\bar{\gamma})}}  = (1+\bar{\pi}) (1+\bar{\gamma}) - 1 \Rightarrow \\ & \\
+& \dfrac{\bar{\Delta}_t}{\bar{P}_t\bar{Y}_t} = \frac{\phi}{(1+\bar{\pi}) (1+\bar{\gamma})}[(1+\bar{\pi}) (1+\bar{\gamma})-1] =: \delta.
+\end{split} 
+\end{equation*}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+За обичайни стойности на параметрите ($ \bar{\pi},\bar{\gamma}>0 $) имаме $ \delta>0 $. Това означава, че поддържането на постоянен депозит на правителството като процент от номиналния БВП изисква политика на бюджетни излишъци.\bigskip
+
+Също така \[ \delta = \frac{\bar{P}_t \bar{T}_t}{\bar{P}_t \bar{Y}_t} - \frac{\bar{P}_t \bar{G}_t}{\bar{P}_t \bar{Y}_t} \Rightarrow \frac{\bar{P}_t \bar{G}_t}{\bar{P}_t \bar{Y}_t} = \tau - \delta ,\] откъдето следва, че $ \mathring{\bar{G}}_t = \bar{\gamma} $ и при $ G_{t-1} = \bar{G}_{t-1} $ ще имаме \[ \mathring{G}_t = (1+\bar{\gamma})(1+\hat{g}_t)-1. \]
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+Ако в момент $ t-1 $ сме в равновесие, за $ \Gamma_t $ получаваме
+\begin{equation}
+\begin{split}
+\mathring{\Gamma}_t = & \frac{P_t T_t - P_t G_t}{\bar{\Gamma}_{t-1}}  \\
+=& \frac{\bar{P}_{t-1}\bar{T}_{t-1}(1+\pi_t)(1+\mathring{Y}_t) - \bar{P}_{t-1}\bar{G}_{t-1}(1+\pi_t)(1+\bar{\gamma})(1+\hat{g}_t) }{\bar{\Gamma}_{t-1}} \\
+=& \frac{\frac{\bar{P}_{t-1}\bar{T}_{t-1}}{\bar{P}_{t-1}\bar{Y}_{t-1}}(1+\pi_t)(1+\bar{\gamma})(1+\hat{y}_t)}{\frac{\bar{\Gamma}_{t-1}}{\bar{P}_{t-1}\bar{Y}_{t-1}}}~~ - \\
+& \frac{\frac{\bar{P}_{t-1}\bar{G}_{t-1}}{\bar{P}_{t-1}\bar{Y}_{t-1}}(1+\pi_t)(1+\bar{\gamma})(1+\hat{g}_t) }{\frac{\bar{\Gamma}_{t-1}}{\bar{P}_{t-1}\bar{Y}_{t-1}}} \\
+=& \frac{(1+\pi_t)(1+\bar{\gamma})}{\phi}[\tau(1+\hat{y}_t) - (\tau - \delta)(1+\hat{g}_t)].
+\end{split}
+\label{eq:cbaGammaChangeMain}
+\end{equation} 
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+Интерпретация на израза за $ \mathring{\Gamma}_t $:
+\begin{itemize}
+\item При стойности на производството, по-високи от потенциалните, темпът на изменение на $ \Gamma_t $ нараства
+\item При по-високи стойности на инфлацията, темпът на изменение на $ \Gamma_t $ нараства
+\item Правителствени разходи, по-големи от равновесната си стойност, имат ограничаващ ефект върху темпа на изменение на $ \Gamma_t $.
+\end{itemize}
+\end{frame}
+
+\begin{frame}\stepcounter{slidenum}
+\frametitle{Разширяване на модела с допълнителни номинални величини (\arabic{slidenum})}
+\framesubtitle{}
+\textbf{Краен резултат:}
+
+Уравненията \eqref{eq:cbaMChange} и \eqref{eq:cbaGammaChangeMain}, съответно за $ \mathring{M}_t $ и $ \mathring{\Gamma}_t $, задават измененията на компонентите, съставляващи международните валутни резерви в модела. Комбинирайки тези две уравнения с помощта на \eqref{eq:cbaIntResChange}, можем да пресметнем и изменението на валутните резерви $ \mathring{F}_t $.
+\end{frame}
+
+%\begin{frame}  \frametitle{Литература}
+%\bibliographystyle{plainnat}
+%\bibliography{BibDatabase1}
+%\end{frame}
+\end{document}

@@ -1,0 +1,1291 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+% \setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{} % Suppresses the navigation symbols in BEAMER
+\title[IS-MP-PC модел]{Краткосрочни модели за затворени икономики. IS-MP-PC модел.}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Краткосрочни и дългосрочни модели}
+\framesubtitle{Реален БВП за Великобритания и неговият кубичен тренд, 1948-2007 г., милиони британски лири.}
+{\centering
+\includegraphics[width=0.75\textwidth]{UKGDP}\\}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Краткосрочни и дългосрочни модели}
+\framesubtitle{}
+\begin{itemize}
+\item Дългосрочна тенденция на развитие -- \emph{тренд}
+\item Краткосрочни колебания около тренда
+\begin{itemize}
+\item Цикъл $\longleftrightarrow$ шокове
+\item Шокове -- природни, политически, икономически
+\item Стохастична и детерминистична трактовка на шоковете
+\end{itemize} \pause 
+\item Модели на растеж
+\item Модели на краткосрочни колебания (\emph{бизнес цикъл})
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Краткосрочни и дългосрочни модели}
+\framesubtitle{}
+\begin{itemize}
+\item Наблюдаван БВП = дългосрочен компонент + краткосрочен компонент
+\item Дългосрочен компонент -- равновесната траектория на производството в
+достатъчно голям хоризонт от време (\emph{потенциално производство, потенциален продукт, потенциален БВП})
+\item Краткосрочен компонент  -- отклонение от потенциалното производство
+\item Идеята за дългосрочен равновесен компонент и краткосрочни отклонения от него важи и за други променливи освен БВП
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Краткосрочни и дългосрочни модели}
+\framesubtitle{Допълнения}
+\begin{itemize}
+\item Различни дефиниции на краткосрочен и дългосрочен хоризонт 
+\begin{itemize}
+\item краткосрочен -- толкова къс, че капиталът в икономиката не се
+изменя; дългосрочен -- има изменения в размера на капитала
+\item краткосрочен -- до 1 година, средносрочен --  от 1 до 3 години, дългосрочен -- над 3
+години
+\item и двата варианта имат недостатъци
+\end{itemize}
+\item Един макроикономически модел би трябвало да включва както явлението икономически растеж, така и бизнес цикъла. Разделението на моделите е условно и се прави за удобство.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Краткосрочни и дългосрочни модели}
+\framesubtitle{Допълнения}
+\begin{itemize}
+\item В настоящия контекст и краткосрочните модели са равновесни, а дългосрочната траектория специално наричаме ,,равновесна'', защото (условно) се абстрахираме от шоковете в дългосрочен хоризонт
+\item От статистическа гледна точка потенциалният БВП е ненаблюдаем и само може да бъде оценен чрез статистически или теоретичен модел
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основен IS-MP-PC модел}
+\framesubtitle{}
+\begin{itemize}
+\item Линеен модел
+\item Три променливи
+\begin{itemize}
+\item отклонение на реалното производство от потенциалната му стойност
+\item инфлация
+\item реален лихвен процент
+\end{itemize} 
+\item $Y_t$ -- реализиран БВП за период $t$, $\bar{Y}_t$ -- потенциално производство за период $t$;
+$$\hat{y}_t := \frac{Y_t-\bar{Y}_t}{\bar{Y}_t}$$ ce нарича
+\emph{отклонение от потенциалното производство}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Основен IS-MP-PC модел}
+\framesubtitle{}
+\begin{itemize}
+\item  За избран ценови индекс $P_t$ имаме
+$$\pi_t := \frac{P_t-P_{t-1}}{P_{t-1}},$$ което представлява \emph{инфлация} спрямо предходния период
+\item $i_t$ -- номинален лихвен процент за период $t$;
+$$r_t := \frac{1+i_t}{1+\pi_t}-1,$$ се нарича \emph{реален лихвен
+процент} т.е. това е лихвен процент, коригиран с инфлацията
+\item За малки стойности на инфлацията и номиналния лихвен процент може да се използва приближеното равенство
+$$r_t \approx i_t - \pi_t$$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основен IS-MP-PC модел}
+\framesubtitle{IS връзка}
+\textbf{IS права}: \beq \hat{y}_t =A -a r_t+\varepsilon_{1,t}, \label{eq:ISline0}\eeq където
+$A,a>0$ са коефициенти, а $\varepsilon_{1,t}$ е шок.
+
+При $r_t=\bar{r}=A/a$ и при отсъствие на шок
+($\varepsilon_{1,t}=0$), имаме $$Y_t=\bar{Y}_t \textrm{ и } \hat{y}_t=0.$$ Тогава производството е на равновесната си стойност и съответният
+лихвен процент $\bar{r}$ ще наричаме \emph{{равновесен реален
+лихвен процент}}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основен IS-MP-PC модел}
+\framesubtitle{IS връзка}
+\begin{itemize}
+\item Нека $\varepsilon_{1,t}=0$. За $r_t>\bar{r}$ имаме $\hat{y}_t < 0$,
+т.е. производството в икономиката е под потенциалното 
+\item  При отрицателни и големи в абсолютно изражение стойности на
+отклонението от потенциалното производство, икономиката се намира в \emph{рецесия} 
+\item За $r_t<\bar{r}$ имаме $\hat{y}_t > 0$, т.е. производството в икономиката е над потенциалното и \emph{икономиката прегрява}
+\item Приели сме, че потенциалното производство се влияе от дългосрочни
+фактори и не се променя при повишение на реалния лихвен процент 
+\item Уравнение \eqref{eq:ISline0} свързва отклонението от потенциалното производство и реалния лихвен процент по линия на търсенето в икономиката (агрегатно търсене, съвкупно търсене)
+\item Съответно шоковете $\varepsilon_{1,t}$ са от страна на търсенето
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основен IS-MP-PC модел}
+\framesubtitle{IS връзка}
+Алтернативен запис на IS правата във вид на отклонения от равновесните стойности на реалния лихвен процент и отклонението от потенциалния БВП: \beq \hat{y}_t = -a( r_t-\bar{r})+\varepsilon_{1,t}. \label{eq:ISline}\eeq
+\end{frame}
+
+\begin{frame}
+\frametitle{Основен IS-MP-PC модел}
+\framesubtitle{PC връзка}
+\begin{itemize}
+\item Предлагането в икономиката моделираме с \emph{{крива на Филипс}}
+\item Тя свързва темпа на инфлация с отклонението от потенциалното производство
+\item В случая връзката е линейна (имаме права)
+\end{itemize}
+
+\medskip\textbf{PC права}:
+\beq
+\pi_t=\bar{\pi}+b\hat{y}_t+\varepsilon_{2,t},\label{eq:PCline}\eeq
+където $\bar{\pi}$ -- равновесен темп на инфлация, $\varepsilon_{2,t}$ -- шок от страна на предлагането, а $b>0$ е коефициент
+\end{frame}
+
+\begin{frame}
+\frametitle{Основен IS-MP-PC модел}
+\framesubtitle{PC връзка}
+\begin{itemize}
+\item Когато производството е равно на потенциалното и отсъстват шокове,
+имаме $\pi_t=\bar{\pi}$ 
+\item Поради това $\bar{\pi}$ се интерпретира като равновесна инфлация
+\item Уравнение \eqref{eq:PCline} представлява положителна
+връзка на ценови показател с показател за реално производство $\Rightarrow$
+аналогия със стандартната крива на предлагане от микроикономиката
+\item Шокове в предлагането -- петролна криза, лоша реколта, ...
+\item Има и по-сложни формулировки на правата PC, напр. когато миналите стойности на инфлацията влияят върху текущата \'и стойност: \beq \pi_t-\bar{\pi}=c (\pi_{t-1}-\bar{\pi})+b\hat{y}_t+\varepsilon_{2,t},\label{eq:PClineDyn}\eeq
+където $c$ е подходящо избран коефициент
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Класическа крива на Филипс}
+\framesubtitle{}
+\begin{itemize}
+\item Терминът \emph{крива на Филипс} често се използва за случая на отрицателна връзка между инфлацията и коефициента на безработица
+\item Това може да се получи като следствие от използваната тук постановка
+\item Използваме линейна производствена функция с един фактор на производство -- труд: $$Y_t = A L_t$$
+\item На потенциалното производство $\bar{Y}_t$ съответства ниво на потенциална заетост $\bar{L}_t$
+\item Тогава имаме $\bar{Y}_t = A \bar{L}_t$ и оттам $\hat{y}_t = \hat{L}_t$, където $\hat{L}_t := L_t/\bar{L}_t-1$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Класическа крива на Филипс}
+\framesubtitle{}
+\begin{itemize}
+\item $LF_t$ -- работната сила в период $t$
+\item Приемаме, че тя е винаги на равновесното си равнище: $LF_t \equiv \overline{{LF}}_t$
+\item Имаме $$LF_t = L_t + U_t,$$ където $U_t$ е броят на безработните в
+разглежданата икономика
+\item $u_t := U_t/LF_t$ -- коефициент на безработица
+\item Ако икономиката е в равновесие: $$LF_t = \bar{L}_t + \bar{U}_t$$ 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Класическа крива на Филипс}
+\framesubtitle{}
+\begin{itemize}
+\item В равновесие дяловете на заетостта и безработицата в работната сила са постоянни:
+$$\bar{u}_t=\dfrac{\bar{U}_t}{\overline{LF}_t}=\bar{u}$$ 
+\item Равновесният коефициент на безработица $\bar{u}$ се нарича \emph{естествена норма на безработица}
+\item Разликата $U_t-\bar{U}_t$ се нарича \emph{циклична безработица}
+\item Дори в равновесие естествената норма на безработица е положителна
+\begin{itemize}
+\item Фрикционна безработица
+\item Негъвкавост в заплатите
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Класическа крива на Филипс}
+\framesubtitle{}
+\begin{itemize}
+\item Имаме $$LF_t=\bar{L}_t(1+\hat{L}_t)+U_t \quad \Rightarrow \quad
+1=(1-\bar{u})(1+\hat{L}_t)+ u_t$$ 
+\item Това може да бъде представено като
+$$\hat{L}_t = \frac{\bar{u}-u_t}{1-\bar{u}} (=\hat{y}_t)$$ 
+\item Замествайки последния израз в PC правата \eqref{eq:PCline}, получаваме отрицателна връзка между инфлация и безработица
+$$\pi_t=\bar{\pi}+b \frac{\bar{u}-u_t}{1-\bar{u}} +\varepsilon_{2,t}$$ 
+\item Това е алтернативна форма на ,,кривата'' на Филипс -- \emph{класическа крива на Филипс}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основен IS-MP-PC модел}
+\framesubtitle{MP връзка}
+\begin{itemize}
+\item Последната връзка в IS-MP-PC модела отразява паричната политика
+\item Приемаме, че централната банка може да контролира достатъчно добре реалния лихвен процент
+\item При провеждането на парична политика лихвеният процент се променя при изменения в избрани макроикономически величини
+\item В случая: при промени в отклонението от потенциалното производство и инфлацията
+\end{itemize}
+$$r_t=f(\hat{y}_t,\pi_t).$$
+\end{frame}
+
+\begin{frame}
+\frametitle{Основен IS-MP-PC модел}
+\framesubtitle{MP връзка}
+\begin{itemize}
+\item Желателно е паричната политика да не вади икономиката от състояние на равновесие
+\item Ако производството се намира на потенциала и
+инфлацията е на равновесната си стойност, трябва реалният лихвен процент да е равен на равновесния
+$$r_t=\bar{r}=f(0,\bar{\pi})$$
+\item В линейния случай имаме \textbf{MP права}
+\[ r_t=\bar{r}+d(\pi_t-\bar{\pi})+e \hat{y}_t,  \] където $d,e>0$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Политика на постоянен реален лихвен процент}
+\framesubtitle{}
+\begin{itemize}
+\item Разглеждаме най-простия случай, когато централната банка поддържа реалния лихвен процент постоянен на равнище $r_t\equiv \bar{r}$
+\item Този случай не е реалистичен от практическа гледна точка... \pause
+\item ...но дава добра база за сравнение с други, активни политики
+\item Ще разгледаме ефектите от шокове в търсенето и в предлагането
+\item Стандартно изследваме положителни шокове (в линейния случай, с точност до знака, анализът е аналогичен за отрицателни шокове) \pause
+\item {\color{red} ,,положителен'' шок $\neq$ ,,желан'' шок}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Политика на постоянен реален лихвен процент}
+\framesubtitle{Шок в търсенето}
+\begin{itemize}
+\item В период $t$ имаме шок в търсенето: $\varepsilon_{1,t}>0$
+(като при това $\varepsilon_{2,t}=0$)
+\item От IS връзката получаваме
+$$\hat{y}_t = \varepsilon_{1,t}\quad (>0)$$ 
+\item Заместваме в PC връзката: $$\pi_t = \bar{\pi} + b
+\varepsilon_{1,t}\quad (>\bar{\pi})$$ 
+\item Интерпретация: при отсъствие на реакция в
+реалния лихвен процент, положителен шок в търсенето води до прегряване на икономиката и ускоряване на инфлацията над равновесния \'и темп.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\framesubtitle{}
+\resizebox{\textwidth}{!}{%
+\begin{minipage}{1.5\textwidth}
+\centering
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\setlinejoinmode\undefined
+  \newcommand{\setlinejoinmode}[1]{}
+\fi
+\ifx\setlinecaps\undefined
+  \newcommand{\setlinecaps}[1]{}
+\fi
+% This way define your own fonts mapping (for example with ifthen)
+\ifx\setfont\undefined
+  \newcommand{\setfont}[2]{}
+\fi
+\pspicture(12.186248,-33.588904)(19.185313,-19.994549)
+\psscalebox{1.000000 -1.000000}{
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\newrgbcolor{diafillcolor}{1.000000 1.000000 1.000000}%
+\psset{fillcolor=diafillcolor}
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(12.200000,24.000000)(18.918839,24.000000)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(19.068839,24.000000)(18.868839,24.100000)(18.918839,24.000000)(18.868839,23.900000)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(19.068839,24.000000)(18.868839,24.100000)(18.918839,24.000000)(18.868839,23.900000)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(15.000000,26.600000)(15.000584,20.372361)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(15.000598,20.222361)(15.100579,20.422370)(15.000584,20.372361)(14.900579,20.422351)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(15.000598,20.222361)(15.100579,20.422370)(15.000584,20.372361)(14.900579,20.422351)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.873000,24.379200){\psscalebox{1 -1}{$\hat{y}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.574820,24.258600){\psscalebox{1 -1}{$0$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.601927,20.154549){\psscalebox{1 -1}{$r$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(13.199314,20.728638)(18.599314,25.728638)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=dashed,dash=1.000000 1.000000}
+\psset{linestyle=dashed,dash=0.070000 0.070000}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(16.213524,30.770993)(16.220000,22.400000)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](15.6,24.380000){\psscalebox{1
+-1}{$\varepsilon_{1,t}$}} \setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.607582,26.0){\psscalebox{1 -1}{$\textrm{IS}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.444081,22.332261){\psscalebox{1 -1}{$\textrm{MP}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.620846,22.606511){\psscalebox{1 -1}{$\bar{r}$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(13.200000,22.400000)(18.200000,22.400000)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(12.200000,30.778904)(18.927639,30.778904)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(19.077639,30.778904)(18.877639,30.878904)(18.927639,30.778904)(18.877639,30.678904)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(19.077639,30.778904)(18.877639,30.878904)(18.927639,30.778904)(18.877639,30.678904)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(15.000000,33.578904)(15.000000,27.172480)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(15.000000,27.022480)(15.100000,27.222480)(15.000000,27.172480)(14.900000,27.222480)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(15.000000,27.022480)(15.100000,27.222480)(15.000000,27.172480)(14.900000,27.222480)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.873700,31.179319){\psscalebox{1 -1}{$\hat{y}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.575520,31.058719){\psscalebox{1 -1}{$0$}}
+\psset{linewidth=0.020000cm}
+\psset{linestyle=dashed,dash=1.000000 1.000000}
+\psset{linestyle=dashed,dash=0.070000 0.070000} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(15.000000,29.138217)(16.217608,29.138026)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](15.886651,31.180119){\psscalebox{1
+-1}{$\varepsilon_{1,t}$}} \setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.573454,27.649472){\psscalebox{1 -1}{$\textrm{PC}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](13.5,29.104464){\psscalebox{1 -1}{$\bar{\pi}+b
+\varepsilon_{1,t}$}} \setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.6,29.75){\psscalebox{1 -1}{$\bar{\pi}$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(12.200000,31.600000)(18.400000,27.800000)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.420000,27.095119){\psscalebox{1 -1}{$\pi$}}
+\psset{linewidth=0.040000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(14.222624,20.562416)(18.728701,24.713300)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.600000,25.0){\psscalebox{1 -1}{$\textrm{IS}_1$}}
+}\endpspicture
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Политика на постоянен реален лихвен процент}
+\framesubtitle{Шок в предлагането}
+\begin{itemize}
+\item В период $t$ имаме шок в предлагането:
+$\varepsilon_{2,t}>0$ (за $\varepsilon_{1,t}=0$)
+\item От IS връзката следва
+$$\hat{y}_t = 0$$ 
+\item От PC връзката получаваме $$\pi_t = \bar{\pi} +
+\varepsilon_{2,t}\quad (>\bar{\pi})$$ 
+\item Интерпретация: при шок в предлагането няма
+реакция в производството (ако лихвеният процент се поддържа на
+равновесното ниво), а шокът се проявява в нарастване на инфлацията
+\item Този резултат не е напълно реалистичен (поне не за произволни шокове от страна на предлагането), а е следствие от опростената структура на модела
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\framesubtitle{}
+\resizebox{\textwidth}{!}{%
+\begin{minipage}{1.5\textwidth}
+\centering
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\setlinejoinmode\undefined
+  \newcommand{\setlinejoinmode}[1]{}
+\fi
+\ifx\setlinecaps\undefined
+  \newcommand{\setlinecaps}[1]{}
+\fi
+% This way define your own fonts mapping (for example with ifthen)
+\ifx\setfont\undefined
+  \newcommand{\setfont}[2]{}
+\fi
+\pspicture(11.390000,-33.588904)(19.185313,-19.994549)
+\psscalebox{1.000000 -1.000000}{
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\newrgbcolor{diafillcolor}{1.000000 1.000000 1.000000}%
+\psset{fillcolor=diafillcolor}
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.400000,24.000000)(18.918839,24.000000)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(19.068839,24.000000)(18.868839,24.100000)(18.918839,24.000000)(18.868839,23.900000)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(19.068839,24.000000)(18.868839,24.100000)(18.918839,24.000000)(18.868839,23.900000)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(15.000000,26.600000)(15.000584,20.372361)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(15.000598,20.222361)(15.100579,20.422370)(15.000584,20.372361)(14.900579,20.422351)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(15.000598,20.222361)(15.100579,20.422370)(15.000584,20.372361)(14.900579,20.422351)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.873000,24.379200){\psscalebox{1 -1}{$\hat{y}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.574820,24.258600){\psscalebox{1 -1}{$0$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.601927,20.154549){\psscalebox{1 -1}{$r$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(13.199314,20.728638)(18.599314,25.728638)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.607582,26.016480){\psscalebox{1 -1}{$\textrm{IS}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.444081,22.332261){\psscalebox{1 -1}{$\textrm{MP}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.620846,22.606511){\psscalebox{1 -1}{$\bar{r}$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(13.200000,22.400000)(18.200000,22.400000)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.500000,30.800000)(18.927639,30.800000)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(19.077639,30.800000)(18.877639,30.900000)(18.927639,30.800000)(18.877639,30.700000)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(19.077639,30.800000)(18.877639,30.900000)(18.927639,30.800000)(18.877639,30.700000)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(15.000000,33.578904)(15.000000,27.172480)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(15.000000,27.022480)(15.100000,27.222480)(15.000000,27.172480)(14.900000,27.222480)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(15.000000,27.022480)(15.100000,27.222480)(15.000000,27.172480)(14.900000,27.222480)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.873700,31.179319){\psscalebox{1 -1}{$\hat{y}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.575520,31.058719){\psscalebox{1 -1}{$0$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.573454,27.649472){\psscalebox{1 -1}{$\textrm{PC}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](13.5,29.104464){\psscalebox{1
+-1}{$\bar{\pi}+\varepsilon_{2,t}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.6,29.8){\psscalebox{1 -1}{$\bar{\pi}$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(12.200000,31.600000)(18.400000,27.800000)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.420000,27.095119){\psscalebox{1 -1}{$\pi$}}
+\psset{linewidth=0.040000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.646368,31.260559)(18.374480,27.127669)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.442567,26.971267){\psscalebox{1
+-1}{$\textrm{PC}_1$}} }\endpspicture
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}}
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{}
+\begin{itemize}
+\item Централните банки обикновено са активни в политиката си
+\item Действията им са ориентирани към постигане на определени цели
+\item Най-често това е поддържане на макроикономическа стабилност
+\item В случая макроикономическа стабилност означава поддържане на инфлацията и производството близо до равновесните им стойности
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{}
+\begin{itemize}
+\item Формализация на целта: минимизира се избрана \emph{функция на загубите}
+\item Разглеждаме квадратична функция на загубите, при която централната
+банка има собствена цел за инфлацията, $\pi^T$, и цел за потенциалния продукт $\bar{Y}_t$, т.е. $\hat{y}_t=0$
+\item Целевата функция е от типа \emph{функция на загубите} \beq L=(\pi_t-\pi^T)^2+\lambda \hat{y}_t^2 ,
+\label{eq:QuadrLoss}\eeq където $\lambda > 0$ отчита относителните
+предпочитания на банката между отклоненията от инфлационната цел и
+от потенциалното производство
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{}
+\begin{itemize}
+\item Централната банка се стреми да минимизира функцията на
+загубите \eqref{eq:QuadrLoss} 
+\item При това се отчитат ограниченията, зададени от структурата на икономиката
+\item IS правата може да се разглежда като връзка, позволяваща на централната банка да определи реалния лихвен процент на базата на подходящо избрано отклонение от потенциалното производство 
+\item Тогава на разположение остава PC правата
+\item Окончателно, задачата е да се минимизира функцията на загубите \eqref{eq:QuadrLoss} при ограничение PC правата \eqref{eq:PCline}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{}
+\begin{itemize}
+\item Заместваме PC връзката във функцията на загубите: $$L=(\bar{\pi}+b
+\hat{y}_t+\varepsilon_{2,t}-\pi^T)^2+\lambda \hat{y}^2_t$$
+\item Диференцираме по $\hat{y}$ и приравняваме на нула: \beq \frac{\partial
+L}{\partial \hat{y}_t} = 2b(\bar{\pi}+b
+\hat{y}_t+\varepsilon_{2,t}-\pi^T)+2\lambda \hat{y}_t = 0.
+\label{eq:FOCquadrLossPC}\eeq
+\item След преобразуване получаваме \beq
+\pi_t=\pi^T-\frac{\lambda}{b}\hat{y}_t .
+\label{eq:OptGapInfl}\eeq 
+\item Това е връзка, задаваща оптималното от гледна точка на централната банка съотношение между инфлация и отклонение от потенциалното производство  \item Моделът с оптимална парична политика при функция на загубите \eqref{eq:QuadrLoss} се задава от IS правата, PC правата и \eqref{eq:OptGapInfl}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{Изразяване на променливите в модела като функция на шоковете и
+коефициентите}
+\begin{itemize}
+\item Комбинираме PC връзката и оптималното съотношение $\pi_t$-$\hat{y}_t$:
+$$\bar{\pi}+b \hat{y}_t +\varepsilon_{2,t} =
+\pi^T-\frac{\lambda}{b}\hat{y}_t,  $$ откъдето \beq \hat{y}_t =
+\frac{b}{b^2+\lambda}
+(\pi^T-\bar{\pi})-\frac{b}{b^2+\lambda}\varepsilon_{2,t}
+\label{eq:OptMPyhatFshocks}\eeq
+\item Ако в PC връзката заместим израза за $\hat{y}_t$ от
+\eqref{eq:OptMPyhatFshocks}, получаваме \beq \pi_t = \bar{\pi} +
+\frac{b^2}{b^2+\lambda}(\pi^T-\bar{\pi})+\left(
+1-\frac{b^2}{b^2+\lambda} \right)\varepsilon_{2,t}
+\label{eq:OptMPpiFshocks}\eeq
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{Изразяване на променливите в модела като функция на шоковете и
+коефициентите}
+\begin{itemize}
+\item От IS връзката, като използваме
+\eqref{eq:OptMPyhatFshocks}, имаме $$a(r_t-\bar{r})= b
+\frac{\bar{\pi}-\pi^T+\varepsilon_{2,t}}{b^2+\lambda}+\varepsilon_{1,t}$$
+\item Оттук получаваме \beq r_t =
+\bar{r}+\frac{b}{a(b^2+\lambda)}(\bar{\pi}-\pi^T)+\frac{1}{a}\varepsilon_{1,t}+\frac{b}{a(b^2+\lambda)}\varepsilon_{2,t}
+\label{eq:OptMPrFshocks} \eeq 
+\item  Последното показва как реалният лихвен процент зависи от коефициентите и шоковете
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{Допълнителни бележки}
+\begin{itemize}
+\item В този вариант на модела централната банка успява напълно да неутрализира ефектите от шоковете в търсенето (в \eqref{eq:OptMPyhatFshocks} и \eqref{eq:OptMPpiFshocks} не участва $\varepsilon_{1,t}$) 
+\item Шоковете в предлагането се отразяват и на ценовите процеси, и на
+производството в икономиката \pause
+\item Сегашната постановка допуска ситуации, при които
+инфлационната цел на централната банка $\pi^T$ се различава от
+равновесната инфлация $\bar{\pi}$
+\item Тогава дори без шокове инфлацията ще бъде различна от равновесната и
+отклонението от потенциалното производство ще бъде ненулево
+(вж. уравнения \eqref{eq:OptMPyhatFshocks} и \eqref{eq:OptMPpiFshocks})
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{Допълнителни бележки}
+\begin{itemize}
+\item Съответно лихвеният процент ще се различава от равновесния лихвен процент (вж. \eqref{eq:OptMPrFshocks})
+\item Колко големи са тези отклонения зависи от предпочитанията на централната банка, изразени чрез коефициента $\lambda$
+\item Ако $\lambda$ е близко до нула $\longrightarrow$ голяма
+тежест на инфлационната  цел в сравнение с целта да поддържа
+производството в икономиката близко до потенциалното 
+\item При отсъствие на шокове $\pi_t$ ще е близко до $\pi^T$, а
+лихвеният процент $r_t$ и отклонението от потенциалното производство
+$\hat{y}_t$ ще се отличават от равновесните си стойности съответно с
+$\frac{b}{a(b^2+\lambda)}(\bar{\pi}-\pi^T)$ и $\frac{b}{b^2+\lambda}
+(\pi^T-\bar{\pi})$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{Допълнителни бележки}
+\begin{itemize}
+\item Ако стойностите на $\lambda$ са големи, централната банка
+дава приоритет на поддържането на производството близко до
+потенциалното
+\item Тогава стойностите на инфлацията и реалния лихвен
+процент при отсъствие на шокове ще са близки съответно до
+$\bar{\pi}$ и $\bar{r}$
+\end{itemize}\pause
+
+{\color{red}ВЪПРОС: Това означава ли, че е за предпочитане централната
+банка да дава приоритет на отклонението от потенциалното
+производство (понеже при инфлационна цел би могло да има трайно
+отклонение от равновесието за икономиката)?} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{Допълнителни бележки}
+
+{\color{red} Не, избраната функция на загубите третира асиметрично инфлацията и отклонението от потенциалното производство.
+
+Ако във функцията на загубите имаше например
+$\lambda \left(\frac{Y_t-Y_t^T}{Y_t^T}\right)^2$ вместо $\lambda
+\hat{y}_t$, за някакви целеви стойности на производството $Y_t^T$,
+то резултатите няма да изглеждат еднозначно в полза на отклонението
+от потенциалното производство.} 
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{Допълнителни бележки}
+\begin{itemize}
+\item Дефинирането на инфлационна цел $\pi^T$, за която евентуално имаме $\pi^T \neq \bar{\pi}$, може да бъде резултат от:
+\begin{itemize}
+\item отчитане на допълнителни фактори при дефинирането на инфлационната цел (например политически фактори)
+\item недостатъчно знание за структурата и характеристиките на икономиката -- централната банка
+погрешно смята, че равновесният темп на инфлация е $\pi^T$
+\end{itemize}
+\item С течение на времето икономическите агенти се адаптират към средата, очакванията им влияят върху равновесния темп на инфлация $\bar{\pi}$ и той се доближава постепенно до $\pi^T$ 
+\item Централната банка също би могла да коригира инфлационната си цел
+към $\bar{\pi}$, ако познанията \'и за структурата на икономиката се
+подобряват с течение на времето
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{Извеждане на MP права}
+\begin{itemize}
+\item Комбинираме IS връзката и PC връзката:
+$$ \pi_t=\bar{\pi}-ab(r_t-\bar{r})+b
+\varepsilon_{1,t}+\varepsilon_{2,t}$$ 
+\item Заместваме този израз във връзката за оптималното съотношение $\pi_t$-$\hat{y}_t$:
+$$\pi^T-\frac{\lambda}{b}\hat{y}_t=\bar{\pi}-ab(r_t-\bar{r})+b \varepsilon_{1,t}+\varepsilon_{2,t}$$
+\item След преобразувания получаваме \emph{MP правата}: \beq
+r_t-\bar{r}=\frac{\bar{\pi}-\pi^T}{a b}+\frac{\lambda}{ab^2}\hat{y}_t
++\frac{1}{a}\varepsilon_{1,t}+\frac{1}{a b}\varepsilon_{2,t}
+\label{eq:OptMPline}\eeq 
+\item Тази права има положителен наклон
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Оптимална парична политика}
+\framesubtitle{}
+\begin{itemize}
+\item За улеснение приемаме, че $\pi^T=\bar{\pi}$
+\item Представяме графично резултатите от  шок в
+търсенето $\varepsilon_{1,t}>0$ и шок в предлагането $\varepsilon_{2,t}>0$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\framesubtitle{}
+\resizebox{\textwidth}{!}{%
+\begin{minipage}{1.5\textwidth}
+\centering
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\setlinejoinmode\undefined
+  \newcommand{\setlinejoinmode}[1]{}
+\fi
+\ifx\setlinecaps\undefined
+  \newcommand{\setlinecaps}[1]{}
+\fi
+% This way define your own fonts mapping (for example with ifthen)
+\ifx\setfont\undefined
+  \newcommand{\setfont}[2]{}
+\fi
+\pspicture(11.341609,-33.588904)(19.185313,-19.994549)
+\psscalebox{1.000000 -1.000000}{
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\newrgbcolor{diafillcolor}{1.000000 1.000000 1.000000}%
+\psset{fillcolor=diafillcolor}
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.400000,24.000000)(18.918839,24.000000)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(19.068839,24.000000)(18.868839,24.100000)(18.918839,24.000000)(18.868839,23.900000)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(19.068839,24.000000)(18.868839,24.100000)(18.918839,24.000000)(18.868839,23.900000)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(15.000000,26.600000)(15.000584,20.372361)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(15.000598,20.222361)(15.100579,20.422370)(15.000584,20.372361)(14.900579,20.422351)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(15.000598,20.222361)(15.100579,20.422370)(15.000584,20.372361)(14.900579,20.422351)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.873000,24.379200){\psscalebox{1 -1}{$\hat{y}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.574820,24.258600){\psscalebox{1 -1}{$0$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.601927,20.154549){\psscalebox{1 -1}{$r$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(13.199314,20.728638)(18.599314,25.728638)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.607582,26.016480){\psscalebox{1 -1}{$\textrm{IS}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](16.918153,20.918153){\psscalebox{1 -1}{$\textrm{MP}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](17.891941,22.353745){\psscalebox{1 -1}{$\bar{r}$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.800000,25.340165)(16.800000,20.740165)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.500000,30.800000)(18.927639,30.800000)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(19.077639,30.800000)(18.877639,30.900000)(18.927639,30.800000)(18.877639,30.700000)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(19.077639,30.800000)(18.877639,30.900000)(18.927639,30.800000)(18.877639,30.700000)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(15.000000,33.578904)(15.000000,27.172480)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(15.000000,27.022480)(15.100000,27.222480)(15.000000,27.172480)(14.900000,27.222480)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(15.000000,27.022480)(15.100000,27.222480)(15.000000,27.172480)(14.900000,27.222480)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.873700,31.179319){\psscalebox{1 -1}{$\hat{y}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.575520,31.058719){\psscalebox{1 -1}{$0$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.573454,27.649472){\psscalebox{1 -1}{$\textrm{PC}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.6,29.7){\psscalebox{1 -1}{$\bar{\pi}$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(12.200000,31.600000)(18.400000,27.800000)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.420000,27.095119){\psscalebox{1 -1}{$\pi$}}
+\psset{linewidth=0.040000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.369868,25.041453)(16.369868,20.441453)
+\psset{linewidth=0.040000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(13.645540,20.456244)(18.645540,25.056244)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](16.455149,20.325414){\psscalebox{1
+-1}{$\textrm{MP}_1$}} \setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.599534,25.252588){\psscalebox{1
+-1}{$\textrm{IS}_1$}} \psset{linewidth=0.020000cm}
+\psset{linestyle=dashed,dash=1.000000 1.000000}
+\psset{linestyle=dashed,dash=0.070000 0.070000} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(12.008125,21.698999)(17.808125,21.698999)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](17.892914,21.653135){\psscalebox{1
+-1}{$\bar{r}+\frac{1}{a}\varepsilon_{1,t}$}}
+\psset{linewidth=0.020000cm}
+\psset{linestyle=dashed,dash=0.070000 0.070000}
+\psset{linestyle=dashed,dash=0.070000 0.070000} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(12.004274,22.399601)(17.804274,22.399601)
+}\endpspicture
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\framesubtitle{}
+\resizebox{\textwidth}{!}{%
+\begin{minipage}{1.5\textwidth}
+\centering
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\setlinejoinmode\undefined
+  \newcommand{\setlinejoinmode}[1]{}
+\fi
+\ifx\setlinecaps\undefined
+  \newcommand{\setlinecaps}[1]{}
+\fi
+% This way define your own fonts mapping (for example with ifthen)
+\ifx\setfont\undefined
+  \newcommand{\setfont}[2]{}
+\fi
+\pspicture(11.390000,-33.588900)(20.456481,-19.994500)
+\psscalebox{1.000000 -1.000000}{
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\newrgbcolor{diafillcolor}{1.000000 1.000000 1.000000}%
+\psset{fillcolor=diafillcolor}
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.400000,24.000000)(18.918839,24.000000)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(19.068839,24.000000)(18.868839,24.100000)(18.918839,24.000000)(18.868839,23.900000)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(19.068839,24.000000)(18.868839,24.100000)(18.918839,24.000000)(18.868839,23.900000)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(15.000000,26.600000)(15.000584,20.372361)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(15.000598,20.222361)(15.100579,20.422370)(15.000584,20.372361)(14.900579,20.422351)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(15.000598,20.222361)(15.100579,20.422370)(15.000584,20.372361)(14.900579,20.422351)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.873000,24.379200){\psscalebox{1 -1}{$\hat{y}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](15.245946,24.258600){\psscalebox{1 -1}{$0$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.716486,20.154500){\psscalebox{1 -1}{$r$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(13.199300,20.728600)(18.599300,25.728600)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.607600,26.016500){\psscalebox{1 -1}{$\textrm{IS}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](16.950939,20.639920){\psscalebox{1 -1}{$\textrm{MP}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](17.891900,22.353700){\psscalebox{1 -1}{$\bar{r}$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.800000,25.340200)(16.800000,20.740200)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.500000,30.800000)(18.927639,30.800000)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(19.077639,30.800000)(18.877639,30.900000)(18.927639,30.800000)(18.877639,30.700000)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(19.077639,30.800000)(18.877639,30.900000)(18.927639,30.800000)(18.877639,30.700000)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(15.000000,33.578900)(15.000000,27.172461)
+\psset{linestyle=solid}
+\setlinejoinmode{0}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon*(15.000000,27.022461)(15.100000,27.222461)(15.000000,27.172461)(14.900000,27.222461)
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\pspolygon(15.000000,27.022461)(15.100000,27.222461)(15.000000,27.172461)(14.900000,27.222461)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.873700,31.179300){\psscalebox{1 -1}{$\hat{y}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](15.246646,31.058700){\psscalebox{1 -1}{$0$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.573500,27.649500){\psscalebox{1 -1}{$\textrm{PC}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](15.163693,30.037125){\psscalebox{1 -1}{$\bar{\pi}$}}
+\psset{linewidth=0.020000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(12.200000,31.600000)(18.400000,27.800000)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](14.600063,27.095100){\psscalebox{1 -1}{$\pi$}}
+\psset{linewidth=0.040000cm} \psset{linestyle=solid}
+\psset{linestyle=solid} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.506529,24.406793)(15.725090,20.626533)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](15.833063,20.423616){\psscalebox{1
+-1}{$\textrm{MP}_1$}} \psset{linewidth=0.020000cm}
+\psset{linestyle=dashed,dash=1.000000 1.000000}
+\psset{linestyle=dashed,dash=0.070000 0.070000} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(14.400000,30.800000)(14.390000,21.830000)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](17.892900,21.653100){\psscalebox{1
+-1}{$\bar{r}+\frac{b}{a(b^2+\lambda)}\varepsilon_{2,t}$}}
+\psset{linewidth=0.020000cm}
+\psset{linestyle=dashed,dash=0.070000 0.070000}
+\psset{linestyle=dashed,dash=0.070000 0.070000} \setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.992391,22.396254)(17.792391,22.396254)
+\psset{linewidth=0.040000cm}
+\psset{linestyle=solid}
+\psset{linestyle=solid}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(11.659011,31.213762)(18.336783,27.154806)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=dashed,dash=1.000000 1.000000}
+\psset{linestyle=dashed,dash=0.070000 0.070000}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(12.002076,29.555034)(17.802076,29.555034)
+\psset{linewidth=0.020000cm}
+\psset{linestyle=dashed,dash=0.070000 0.070000}
+\psset{linestyle=dashed,dash=0.070000 0.070000}
+\setlinecaps{0}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\psline(12.002076,21.828277)(17.802076,21.828277)
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](18.567261,27.065478){\psscalebox{1
+-1}{$\textrm{PC}_1$}} \setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](13.3,31.115023){\psscalebox{1
+-1}{$-\frac{b}{b^2+\lambda}\varepsilon_{2,t}$}}
+\setfont{Helvetica}{0.200000}
+\newrgbcolor{dialinecolor}{0.000000 0.000000 0.000000}%
+\psset{linecolor=dialinecolor}
+\rput[l](17.888981,29.469045){\psscalebox{1 -1}{$\bar{\pi}+
+\left( 1-\frac{b^2}{b^2+\lambda} \right)\varepsilon_{2,t}$}}
+}\endpspicture
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{minipage}}
+\end{frame}
+
+\end{document}
+

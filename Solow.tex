@@ -1,0 +1,377 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+\DeclareMathOperator*{\const}{const}
+% \setbeamercovered{transparent}
+\title[Модел на Солоу]{Модел на Солоу-Суон}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основни въпроси}
+\framesubtitle{}
+\begin{itemize}
+\item Формулировка на модела на Солоу-Суон
+\item Равновесие в модела
+\item ,,Златно правило'' за натрупване на капитала
+\item Динамика на прехода към стационарната стойност
+\end{itemize}
+\end{frame}
+
+\newcounter{slidenum} 
+\setcounter{slidenum}{1}
+\begin{frame}[fragile]
+\frametitle{Основни положения (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}\itemsep1em
+\item Моделът на Солоу--Суон (Solow--Swan) се нарича още неокласически модел на икономически растеж.
+\item Ще разгледаме формулировка на модела в непрекъснато време и за случая на затворена икономика.
+\item Означаваме с $K(t)$, $L(t)$, $Y(t)$, $S(t)$ и $I(t)$ съответно
+обемите на капитала, труда, производството, спестяванията и инвестициите през периода $t$. Тези величини са функции на аргумента $t\in[0,+\infty)$.
+\item Понеже икономиката е затворена, имаме \beq
+S(t)=I(t) . \label{eq:SeqI} \eeq
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{Основни положения (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}\itemsep1em
+\item Предполагаме, че
+склонността към спестяване (която в линейния случай съвпада с нормата на спестяване) $s=\const\in(0,1)$ е постоянна и зададена екзогенно: \beq S(t)= s Y(t) .
+\label{eq:Srate}\eeq
+\item Приемаме, че работната сила $L(t)$ расте с постоянен темп
+$n=\const>0$. С помощта на нормирането $L(0)=1$ получаваме
+$$L(t)=e^{nt}.$$
+\item Разглежда се неокласическа производствена функция $$Y=F(K,L).$$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Интензивна форма на производствената технология}
+\framesubtitle{}
+Ако означим $$k=\frac{K}{L},~y=\frac{Y}{L},$$ от условието за
+хомогенност следва, че $$Y=F(K,L)=L F(k,1):= L f(k),$$ което ни
+дава \beq y=f(k) \label{eq:ContPrFIntForm}\eeq (производствена
+функция в интензивна форма).
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Свойства на производствената функция в интензивна форма}
+\framesubtitle{}
+Понеже $Y=L f(k)$, намираме \beq \left\{
+\begin{array}{l}
+  \frac{\partial Y}{\partial K}=f'(k)>0, \\
+  {}\\
+  \frac{\partial Y}{\partial L}=[f(k)-k f'(k)]>0
+\end{array}
+ \right.\label{eq:ContPrFDerivs}\eeq и от условията на Инада
+ следва, че \beq \lim_{k\rightarrow 0}f'(k)=+\infty,~\lim_{k\rightarrow +\infty}f'(k)=0 . \label{eq:ContInada}\eeq
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Базисно уравнение на модела на Солоу}
+\framesubtitle{}
+Натрупване на капитал:
+$$\dot{K}=I-\delta K\equiv s
+F(K,L)-\delta K,$$ където $\delta=\const > 0$ отчита
+амортизирането на капитала.\bigskip
+
+Следователно
+$$\frac{\dot{K}}{L}=sf(k)-\delta k ,$$ откъдето, предвид
+$$\dot{k}=\frac{d}{dt}\left(\frac{K}{L}\right)=\frac{\dot{K}}{L}-\frac{K}{L^2}\dot{L},$$
+получаваме \beq \dot{k}=s f(k)-(n+\delta)k.
+\label{eq:ContCapDynIntForm}\eeq
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Равновесие}
+\framesubtitle{}
+Казваме, че икономиката се намира на \textbf{равновесна
+траектория}, ако величините, които
+я описват ($k,y,c,\ldots$) имат постоянен темп на нарастване
+(т.е. $\dot{k}/k=\const$ и т.н.).\bigskip \bigskip
+
+\textbf{Забележка.} На английски терминът, използван за равновесна траектория, е
+\emph{steady state}. Същият термин се използва и за стационарна
+точка на динамична система. В англоезичната икономическа литература терминът
+\emph{steady state} се използва и при постоянен ненулев темп на
+нарастване, като обикновено изходната динамична система,
+описваща икономиката, може да се трансформира по подходящ
+начин, така че на равновесните \`и траектории да съответстват
+стационарните точки на трансформираната система.
+\end{frame}
+
+
+\setcounter{slidenum}{1}
+\begin{frame}[fragile]
+\frametitle{Равновесие в модела на Солоу (\arabic{slidenum})}
+\framesubtitle{}
+От \eqref{eq:ContCapDynIntForm} следва, че за равновесната
+траектория $$\frac{\dot{k}}{k}=\const =
+s\frac{f(k)}{k}-(n+\delta),$$ откъдето
+$$\frac{f(k)}{k}=\const .$$ Оттук, след диференциране по
+времето $t$, намираме
+$$0=\frac{f'(k)\dot{k}}{k}-\frac{f(k)\dot{k}}{k^2}=\frac{\dot{k}}{k}\cdot
+\frac{kf'(k)-f(k)}{k}.$$ Понеже числителят на последната дроб е
+положителен (вж. \eqref{eq:ContPrFDerivs}), производната
+$\dot{k}=0$, т.е. $k(t)=k_0=\const$ за равновесната траектория.
+Тогава са постоянни също $y_0=f(k_0)$ и $c_0=(1-s)f(k_0)$.
+\end{frame}
+
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{Равновесие в модела на Солоу (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}\itemsep1em
+\item Т.е. установихме, че в модела на Солоу условието за постоянен
+темп на растеж всъщност означава, че величините са постоянни.
+\item Може да се покаже, че върху равновесната траектория величините $K$, $Y$ и $C$ растат с постоянен темп, а именно темпът на нарастване на работната сила $n$.
+\item Да проверим това твърдение например за $ K $. Имаме $$ 0=\dot{k}=\frac{\dot{K}}{L}-\frac{K}{L}n, $$ откъдето следва $ \frac{\dot{K}}{K}=n $.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{Равновесие в модела на Солоу (\arabic{slidenum})}
+\framesubtitle{}
+За равновесната траектория числото $k=k_0>0$ удовлетворява \beq
+s f(k_0)=(n+\delta)k_0. \label{eq:ContSStatek0}\eeq Определяме
+функцията $k_0=k_0(s)$ от последното уравнение. Това е
+възможно, защото
+\begin{equation*}
+    \begin{split}&\frac{\partial}{\partial k_0}\left[ s f(k_0)-(n+\delta)k_0 \right]=s f'(k_0)-(n+\delta)=\\
+    &= \frac{1}{k_0}\left[k_0 s f'(k_0)-(n+\delta)k_0 \right]=\frac{1}{k_0}\left[k_0 s f'(k_0)-s f(k_0) \right]= \\
+    &= \frac{s}{k_0}\left[k_0 f'(k_0)-f(k_0) \right]<0
+    \end{split}
+\end{equation*} поради \eqref{eq:ContPrFDerivs}.
+\end{frame}
+
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{Равновесие в модела на Солоу (\arabic{slidenum})}
+\framesubtitle{}
+Производната на функцията $k_0=k_0(s)$ е положителна, защото след диференциране на
+\eqref{eq:ContSStatek0} по $ s $ получаваме, че $$f(k_0)+s f'(k_0)\frac{d
+k_0}{ds}=(n+\delta)\frac{d k_0}{ds},$$ откъдето \beq \frac{d
+k_0}{ds}=\frac{f(k_0)}{n+\delta -s f'(k_0) }>0.
+\label{eq:Contdk0dsPositive}\eeq \bigskip
+
+Последното означава, че равновесният капитал нараства при нарастване на спестяванията в икономиката.
+\end{frame}
+
+\setcounter{slidenum}{1}
+\begin{frame}[fragile]
+\frametitle{,,Златно правило'' за натрупване на капитала (\arabic{slidenum})}
+\framesubtitle{}
+За равновесната траектория потреблението на глава от населението е
+$$c_0=(1-s)f(k_0(s))=f(k_0(s))-(n+\delta)k_0(s)$$ и има
+производна $$\frac{d c_0}{ds}=\left[f'(k_0(s))-(n+\delta)
+\right]\frac{dk_0(s)}{ds}.$$
+
+При малки стойности на $s$ (т.е. за малки $k_0(s)$) тя е
+положителна (вж. \eqref{eq:ContInada}), а за големи $s$ --
+отрицателна. 
+\end{frame}
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{,,Златно правило'' за натрупване на капитала (\arabic{slidenum})}
+\framesubtitle{}
+Следователно $c_0(s)$ достига максимума си за
+онази стойност на $s$, за която $$\frac{d c_0}{ds}=0, \textrm{
+т.е. } f'(k_0(s))=n+\delta,$$ тъй като производната на $k_0$ по $ s $ е
+положителна. Тази стойност на $s$ се означава $s_{\textrm{gold}}$, съответно имаме $k_0=k_{\textrm{gold}}$, потребление $c_{\textrm{gold}}$. \bigskip \bigskip
+
+Смисълът от названието на това правило е, че при този темп на спестяване в равновесие се осигурява максималното възможно ниво на потребление. Разбира се, за кратко е възможно да се увеличи потреблението в даден къс хоризонт, но при златното правило се постига максималното възможно потребление и за бъдещите поколения.
+\end{frame}
+
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{,,Златно правило'' за натрупване на капитала (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}\itemsep1em
+\item Нека да вземем стойности $s_i$, $i=1,2$, за които
+$s_1<s_{\textrm{gold}}<s_2$. Тогава предвид
+\eqref{eq:Contdk0dsPositive}, за съответните стационарни
+стойности $k_i=k_0(s_i),~i=1,2$, имаме
+$$k_1<k_{\textrm{gold}}<k_2 .$$
+\item При икономика, в която нормата на спестяване
+$s_2>s_{\textrm{gold}}$, ще се реализира потребление
+$c_2<c_{\textrm{gold}}$ (тъй като последното е максимално
+възможно).
+\item Ако $s_2$ се намали до $s_{\textrm{gold}}$, $c_2$
+ще нарасне до $c_{\textrm{gold}}$ (като в началото ще се
+наблюдава фактически още по-голяма стойност). Това показва, че
+при $s>s_{\textrm{gold}}$ икономиката не функционира ефективно.
+\item За $s_1<s_{\textrm{gold}}$ потреблението
+$c_1<c_{\textrm{gold}}$ ще нарасне до максималната стойност
+след първоначален преходен период с намалено потребление.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{Златно правило за натрупване на капитала (\arabic{slidenum})}
+\framesubtitle{Графична илюстрация}
+\begin{center}
+\input{GoldRule_edited.tex}
+\end{center}
+\end{frame}
+
+\setcounter{slidenum}{1}
+\begin{frame}[fragile]
+\frametitle{Динамика на прехода към стационарната стойност (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}\itemsep1em
+\item Ще разгледаме динамиката на
+прехода към стационарната стойност $k_0$ в зависимост от
+началната стойност $k(0)$ на капитала $k(t)$.
+\item От основното
+уравнение \eqref{eq:ContCapDynIntForm} се вижда, че темпът на
+растеж на $k(t)$ \beq \gamma_k := \frac{\dot{k}}{k}=s
+\frac{f(k)}{k}-(n+\delta) \label{eq:ContkGrRate}\eeq е
+положителен при малки стойности на $k$ и отрицателен -- при
+големи.
+\item Скоростта на прехода към равновесието е толкова по-малка, колкото $k(0)$ е по-близо до $k_0$ (вж. следващата фигура).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{Динамика на прехода към стационарната стойност (\arabic{slidenum})}
+\framesubtitle{}
+\begin{center}
+\input{TransToSState_edited.tex}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{Динамика на прехода към стационарната стойност (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}\itemsep1em
+\item По-нататък темпът на растеж $\dot{\varphi}/\varphi$ на
+функцията $\varphi(t)$ ще означаваме с $\gamma_\varphi$.
+\item Например 
+$$\gamma_K :=\frac{\dot{K}}{K}=\frac{\dot{K}}{L}\cdot \frac{L}{K}=\frac{1}{k}(\dot{k}+kn)=\gamma_k+n
+,$$ т.е. темпът на растеж на общия обем на капитала $K(t)$ е
+равен на темпа на растеж на капитала на глава от населението
+$\gamma_{k(t)}$, увеличен с темпа $n$ на растеж на населението.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{Динамика на прехода към стационарната стойност (\arabic{slidenum})}
+\framesubtitle{}
+Аналогично бихме могли да изучим темпа на растеж на
+производството на глава от населението (вж.
+\eqref{eq:ContkGrRate}): \beq \gamma_y:=
+\frac{\dot{y}}{y}=\frac{f'(k)\dot{k}}{f(k)}=\frac{k
+f'(k)}{f(k)} \gamma_k = s f'(k)-(n+\delta)\textrm{Sh}(k),
+\label{eq:ContyGrRate}\eeq където величината $$\textrm{Sh}(k)
+:= \frac{k f'(k)}{f(k)}$$ се нарича \textbf{дял на
+капитала} (като част от общия доход).
+\end{frame}
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{Динамика на прехода към стационарната стойност (\arabic{slidenum})}
+\framesubtitle{}
+След диференциране относно $k$ намираме
+\begin{equation*}\begin{split} \frac{\partial \gamma_y}{\partial k} &
+= s f''(k)-(n+\delta)\frac{(k f''+f')f-k (f')^2}{f^2}= \\ & = s
+f''(k)-(n+\delta)\frac{k f''}{f}-(n+\delta)\frac{f'}{f}\left[ 1-\frac{k
+f'}{f} \right],
+\end{split}\end{equation*} т.е. предвид
+\eqref{eq:ContCapDynIntForm} \beq \frac{\partial
+\gamma_y}{\partial k}=\frac{f''(k) k
+}{f(k)}\gamma_k-\frac{(n+\delta)f'(k)}{f(k)}\left[1-\textrm{Sh}(k)\right].
+\label{eq:ContDerivyGrWRTk}\eeq
+\end{frame}
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{Динамика на прехода към стационарната стойност (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}\itemsep1em
+\item Понеже $0<\textrm{Sh}(k)<1$, последното събираемо в
+дясната страна на \eqref{eq:ContDerivyGrWRTk} е отрицателно.
+\item Когато $\gamma_k \geq 0$, тогава и първото събираемо е
+неположително и в крайна сметка $\frac{\partial
+\gamma_y}{\partial k}<0$.
+\item Следователно при тези условия
+$\gamma_y$ намалява при нарастване на $k$. Да напомним, че $\gamma_k \geq 0$ е изпълнено
+при $k \leq k_0(s)$.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+\frametitle{Динамика на прехода към стационарната стойност (\arabic{slidenum})}
+\framesubtitle{}
+\begin{itemize}\itemsep1em
+\item При условие че $\gamma_k < 0$ (т.е. $k>k_0$), знакът на
+$\frac{\partial \gamma_y}{\partial k}$ не може да се определи
+(при максимално общите предположения за $f(k)$).
+\item Можем да кажем обаче, че ако икономиката е много близо до стационарното
+състояние (т.е. $k-k_0$ е много малко), тогава $\gamma_k>0$ ще
+бъде много малко и следователно отново $\frac{\partial
+\gamma_y}{\partial k}<0$.
+\item Тъй като $s=\const$ в модела на Солоу--Суон, от равенството
+$c=(1-s)y$ следва, че поведението на $\gamma_c$ съвпада с това
+на $\gamma_y$.
+\end{itemize}
+ 
+
+
+\end{frame}
+
+\end{document}
+
+

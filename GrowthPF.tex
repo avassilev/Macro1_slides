@@ -1,0 +1,381 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+\DeclareMathOperator*{\const}{const}
+% \setbeamercovered{transparent}
+\title[Растеж. Производствени функции]{Икономически растеж. Производствени функции}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основни въпроси}
+\framesubtitle{}
+\begin{itemize}
+\item Стилизирани факти за икономическия растеж
+\item Производствени функции
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Преговор: краткосрочни и дългосрочни модели}
+\framesubtitle{Реален БВП за Великобритания и неговият кубичен тренд, 1948-2007 г., милиони британски лири.}
+{\centering
+\includegraphics[width=0.75\textwidth]{UKGDP}\\}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Емпирични наблюдения}
+\framesubtitle{}
+\begin{itemize}
+	\item В САЩ за периода 1870--1990 г. БВП на глава от населението е нараснал 8.1 пъти (от 2244 \$ до 18 258 \$) със среден темп на годишен растеж 1.75\%. \pause \newline
+	\textbf{Защо разглеждаме БВП на глава от населението?} \pause
+	\item За периода 1900--1987 г. годишният темп на
+	растеж за Индия, Пакистан и Филипините е съответно
+	0.64\%, 0.88\% и 0.86\%. 
+	\item За периода от 1890 г. до началото на 90-те
+	години на XX в. темпът на растеж в Япония и
+	Тайван е съответно 2.95\% и 2.75\%.
+	\item За периода 1960-1990 г. 18 държави са имали
+	отрицателен растеж на реалния БВП на глава от
+	населението.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Стилизирани факти на Калдор}
+\framesubtitle{}
+\begin{enumerate}\itemsep1em
+	\item Производството на глава от
+	населението расте с течение на
+	времето и съответният темп на
+	растеж не намалява.
+	\item Физическият капитал за един
+	зает в производството
+	расте.
+	\item Възвръщаемостта на
+	средствата, вложени в капитал, е
+	приблизително постоянна.
+	\item Отношението на физическия
+	капитал и произведената продукция
+	е приблизително постоянно.
+	\item Дяловете на труда и на
+	физическия капитал в националния
+	доход са приблизително постоянни.
+	\item Темпът на растеж на
+	производството на един зает се различава значително
+	в отделните страни.
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Дефиниция на производствена функция}
+\framesubtitle{}
+\begin{itemize}\itemsep1em
+\item Най-често се приема, че произведената продукция $Y$ зависи от:
+	\begin{itemize}\itemsep1em
+	\item обема на физическия капитал
+	$K$
+	\item работната сила $L$
+	\item нивото на технологично развитие (дали разполагаме с повече или по-малко съвършени технологии на производство)
+	\end{itemize} 
+\item Малко по-общо, искаме производството $Y$ да зависи от обемите на даден набор вложени количества $X_i,~i=1,\ldots,n,$ на отделните фактори на производство (капитал, труд, енергия, суровини и пр.). 
+\item Такъв тип връзка се нарича \textbf{производствена функция}:
+\beq Y=F(X_1,\ldots,X_n).\label{eq:prodfungenrl}\eeq 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Основни предположения за производствените функции}
+\framesubtitle{Роля на производствените фактори и ,,закон за намаляващата възвръщаемост''}
+\begin{itemize}\itemsep1em
+\item В сила са следните предположения:
+\beq F_{X_i}>0,~F_{X_i X_i}<0,~\forall i=1,\ldots,n,
+\label{eq:prodfunprop}\eeq където $F_{X_i}:=\frac{\partial
+}{\partial X_i}F(X_1,\ldots,X_n)$ и $F_{X_i X_j}:=\frac{\partial^2
+}{\partial X_i X_j}F(X_1,\ldots,X_n)$
+\item \textbf{Интерпретация на изискването за първите производни:} Всеки производствен фактор допринася за производството и нарастването на използваните количества от фактора води до по-висока продукция.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Основни предположения за производствените функции}
+\framesubtitle{Роля на производствените фактори и ,,закон за намаляващата възвръщаемост''}
+\begin{itemize}\itemsep1em
+
+\item \textbf{Интерпретация на изискването за вторите производни:} увеличаването на всеки
+ресурс води до нарастване на продукцията, но при увеличението на
+количествата от ресурса (при фиксирани обеми на останалите ресурси)
+имаме намаляване на скоростта $F_{X_i}$ на увеличаване (по отношение
+на него).
+\item Това свойство е известно като ,,закон за намаляващата възвръщаемост'' или ,,закон за намаляващата пределна производителност''.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Основни предположения за производствените функции}
+\framesubtitle{Постоянна възвръщаемост по отношение на мащаба}
+\begin{itemize}\itemsep1em
+\item Производствената функция е положително
+хомогенна от първа степен \beq F(\lambda X_1,\ldots,\lambda
+X_n)=\lambda F(X_1,\ldots,X_n),~\forall \lambda>0.
+\label{eq:homdegzero}\eeq
+\item \textbf{Интерпретация:} Ако увеличим $\lambda$ пъти
+вложените ресурси, също толкова пъти нараства и продукцията.
+\item Това свойство се нарича \emph{постоянна
+възвръщаемост по отношение на мащаба}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Основни предположения за производствените функции}
+\framesubtitle{Формула на Ойлер}
+\begin{itemize}\itemsep1em
+\item Ако диференцираме \eqref{eq:homdegzero} по $\lambda$ в точката $\lambda=1$, получаваме \begin{equation}
+\sum_{i=1}^{n}F_{X_i} X_i = F(X_1,\ldots,X_n).
+\label{eq:EulerFormula}\end{equation}
+\item Тази връзка се нарича \textbf{формула на Ойлер}.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Основни предположения за производствените функции}
+\framesubtitle{Пример}
+Ще покажем, че за $n=1$ от условието за положителна хомогенност от първа степен \eqref{eq:homdegzero} 
+следва, че $F(X)$ е линейна функция, т.е. $F(X)=aX,~a=\const$. \bigskip
+
+Наистина, ако фиксираме $ X_0>0 $ и означим $ a=\frac{F(X_0)}{X_0} $, тогава за $ \lambda = \frac{X}{X_0} $ имаме $ F(X)=F(\lambda X_0) = \frac{X}{X_0}F(X_0)=a X $.
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Основни предположения за производствените функции}
+\framesubtitle{Условия на Инада}
+\begin{itemize}\itemsep1em
+\item Условията \beq \lim_{X_i \rightarrow
+0}F_{X_i}=+\infty,\qquad \lim_{X_i \rightarrow
++\infty}F_{X_i}=0 \label{eq:InadaCond}\eeq за произволно
+фиксирани стойности на останалите променливи се наричат \emph{условия на Инада}.
+\item \textbf{Интерпретация:} Ако $ i $-тият производствен фактор стане много оскъден, той става много ценен и пределният му продукт става много голям (малко увеличение на използваното количество води до голямо нарастване на производството). Ако производственият фактор вече се използва в големи количества, използването на още малко от него почти не променя произведения продукт.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Същественост на производствените фактори}
+\framesubtitle{}
+\begin{itemize}\itemsep1em
+\item От условието за хомогенност от първа степен \eqref{eq:homdegzero} и условията на Инада \eqref{eq:InadaCond} следва, че при наличие на повече ресурси не е
+възможно само един ресурс да замести останалите $n-1$, т.е.
+\beq F(0,\ldots,0,X_i,0,\ldots,0)=0,~\forall i=1,\ldots,n.
+\label{eq:NoProd}\eeq
+\item В частния случай, когато $Y=F(K,L)$,
+това означава, че всяка една от ,,съставките'' е от решаващо
+значение за производството, т.е. $F(K,0)=F(0,L)=0$.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Същественост на производствените фактори}
+\framesubtitle{}
+За да установим \eqref{eq:NoProd}, ще отбележим, че при
+фиксирани стойности на $X_j,~j\neq i$, е изпълнено
+$$\lim_{X_i \rightarrow +\infty}
+\frac{F(X_1,\ldots,X_n)}{X_i}=0.$$ \bigskip
+
+Последното твърдение е очевидно, ако числителят е ограничен.\bigskip
+
+Ако числителят не е ограничен, т.е. $$\lim_{X_i \rightarrow +\infty} F(X_1,\ldots,X_n)=+\infty,$$
+прилагаме правилото на Лопитал и второто условие от условията на Инада
+\eqref{eq:InadaCond}. 
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Същественост на производствените фактори}
+\framesubtitle{}
+От условието за хомогенност от първа степен \eqref{eq:homdegzero} имаме
+$$\frac{F(X_1,\ldots,X_n)}{X_i}=F\left( \frac{X_1}{X_i},\ldots,\frac{X_{i-1}}{X_i},1,\frac{X_{i+1}}{X_i},\ldots,\frac{X_n}{X_i}
+\right),$$ което при $X_i \rightarrow +\infty$ ни дава $$F(0,\ldots,0,1,0,\ldots,0)=0.$$\bigskip
+
+Умножаваме последното равенство с $X_i>0$ и получаваме \eqref{eq:NoProd}.
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Пример: функция на Коб-Дъглас}
+\framesubtitle{}
+Тази функция може да бъде изведена от микроикономически съображения при подходящи предположения.\bigskip
+
+Ако означим с $P_i$ цената на единица обем от
+$i$-тия ресурс, а общото ценово равнище на продукцията е $P$, и допуснем, че тези цени се приемат за дадени,
+тогава номиналната ,,печалба'' от производството, която бихме искали да максимизираме, е $$\Pi = P
+F(X_1,\ldots,X_n)-\sum_{i=1}^n P_i X_i .$$ 
+
+Необходимите условия за оптималност са $\Pi_{X_i}=0,~ i=1,\ldots,n $, т.е. \beq
+F_{X_i}(X_1,\ldots,X_n)=\frac{P_i}{P} . \label{eq:MaxProfit}
+\eeq 
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Пример: функция на Коб-Дъглас}
+\framesubtitle{}
+Оттук след умножаване с $\frac{X_i}{Y}$ намираме, че
+еластичността на $F$ относно $X_i$ удовлетворява \beq \frac{X_i
+F_{X_i}}{F}=\frac{P_iX_i}{PY} , \label{eq:ElastF}\eeq т.е. еластичността на $F$ относно $X_i$ е частта от стойността на БВП (равен на $PY$), която съответства на $i$-тия ресурс.
+
+Предвид формулата на Ойлер \eqref{eq:EulerFormula} и като се използва необходимото условие за максимум \eqref{eq:MaxProfit}, за оптималните обеми на $X_i$ е в сила 
+\begin{equation}
+PY=\sum_{i=1}^n P_i X_i . 
+\label{eq:EulerConseq}
+\end{equation} 
+
+Последното равенство показва, че максималната стойност на печалбата при тези предположения е нула. Така е винаги при съвършена конкуренция.
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Пример: функция на Коб-Дъглас}
+\framesubtitle{}
+Най-често разглежданият случай е когато ресурсите са два:
+капитал $K$ и труд $L$. Съответно $Y=F(K,L)$. Условията
+\eqref{eq:ElastF} в този случай имат вида
+$$\frac{K F_K}{F}=\frac{P_K K}{P Y},~ \frac{L F_L}{F}=\frac{P_L L}{P
+Y},$$ където $P_L=W$ е номиналната работна заплата, $P_K=R$ е
+рентната цена на капитала, а величините в десните страни на
+горните равенства са съответните части на капитала и труда.
+Предвид свойство 5 от стилизираните факти на Калдор можем \emph{приблизително} да
+предположим, че \beq \frac{K F_K}{F}=\alpha=\const > 0,~\frac{L
+F_L}{F}=\beta=\const>0. \label{eq:ConstElast}\eeq  
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Пример: функция на Коб-Дъглас}
+\framesubtitle{}
+Като фиксираме $L$, първото условие от \eqref{eq:ConstElast} може еквивалентно да бъде записано като $$\frac{\partial}{\partial K} (\ln F - \alpha \ln K)=0,$$ откъдето $$F=C K^\alpha,~ C=C(L)=\const (L).$$ 
+
+Сега фиксираме $K$ и заместваме получения израз за $ F $ във второто равенство от \eqref{eq:ConstElast}, като по този начин намираме
+$$\frac{L C'(L)K^\alpha }{ C(L) K^\alpha}=\beta\quad \Rightarrow \quad \frac{C'(L)}{C(L)} = \frac{\beta}{L},$$ откъдето \[ C(L)=A L^\beta, \]където $A$ е абсолютна константа.
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Пример: функция на Коб-Дъглас}
+\framesubtitle{}
+Окончателно следва, че \beq F(K,L)=AK^\alpha L^\beta ,
+\label{eq:CobbDougForm}\eeq 
+
+Предвид формулата на Ойлер \eqref{eq:EulerFormula} получаваме \beq \alpha+\beta=1 .
+\label{eq:CRS}\eeq Именно функцията \eqref{eq:CobbDougForm} при
+условието \eqref{eq:CRS} се нарича \textbf{функция на Коб--Дъглас}.
+\end{frame}
+
+
+
+\begin{frame}[fragile]
+\frametitle{Неокласически производствени функции}
+\framesubtitle{}
+Една производствена функция се нарича \emph{неокласическа}, ако тя притежава посочените по-горе свойства, а именно:
+\begin{enumerate}\itemsep1em
+\item Положителен ефект от нарастването на производствените фактори
+\item ,,Закон за намаляващата възвръщаемост''
+\item Постоянна възвръщаемост по отношение на мащаба
+\item Условия на Инада
+\end{enumerate}\bigskip
+
+\textbf{Забележка:} Понякога като отделно свойство се посочва и съществеността на производствените фактори, макар че формално то е следствие.
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Отчитане на технологичния напредък}
+\framesubtitle{}
+\begin{itemize}\itemsep1em
+\item Понякога се налага да се отчита съображението, че резултатът за производството от дадена комбинация от производствени фактори зависи от степента на технологичен напредък и знание.
+\item В макроикономическите модели най-често това се прилага за стандартния случай на два производствени фактора -- труд и капитал.
+\item За целта се прави модификация на производствената функция, като в нея се добавя допълнителна променлива, отговаряща на степента на технологичен напредък (прогрес).
+\item Има три стандартни начина, по-които може да се направи подобна модификация.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Видове технологичен напредък}
+\framesubtitle{}
+\begin{defin}Ще казваме, че технологичният прогрес е
+\begin{itemize}
+\item[а)] неутрален по Хикс (Hicks)
+\item[б)] неутрален по Харод (Harrod)
+\item[в)] неутрален по Солоу (Solow),
+\end{itemize} ако съответната производствена функция (модифицирана вследствие
+иновациите) $F(K,L,t)$ има вида \begin{itemize}
+\item[а)] $T(t)F(K,L)$, $\frac{dT}{dt}\geq 0$,
+\item[б)] $F(K,A(t)L)$, $\frac{dA}{dt}\geq 0$ (технология,
+    усилваща влиянието на работната
+    сила или за краткост -- увеличаваща работната сила),
+\item[в)] $F(B(t)K,L)$, $\frac{dB}{dt}\geq 0$ (технология,
+    усилваща влиянието на
+    капитала или за краткост -- увеличаваща капитала).
+\end{itemize}
+%
+\label{def:TechProg}
+\end{defin}
+\end{frame}
+
+\end{document}

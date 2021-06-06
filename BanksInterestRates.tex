@@ -1,0 +1,169 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+% \setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{} % Suppresses the navigation symbols in BEAMER
+\title[Банков сектор]{Функциониране на банковата система и лихвени проценти}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Общи бележки}
+\framesubtitle{}
+\begin{itemize}
+\item Преговор -- сектор \emph{Финансови предприятия} и финансово посредничество
+\item Един лихвен процент (теоретична постановка) $ \longleftrightarrow $ Множество лихвени проценти (практика, статистически източници)
+\item Приемливо приближение ли е използването на един лихвен процент?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Как икономическите агенти получават финансови ресурси при нужда?}
+\framesubtitle{}
+\begin{itemize}
+\item Домакинство \pause
+\begin{itemize}
+\item Заем/кредит 
+\item Продажба на активи
+\item ...
+\end{itemize} \pause
+\item Фирма \pause
+\begin{itemize}
+\item Акции
+\item Облигации
+\item Кредит
+\item Продажба на активи
+\item ...
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Как икономическите агенти получават финансови ресурси при нужда?}
+\framesubtitle{}
+\begin{itemize}
+\item Домакинство 
+\begin{itemize}
+\item {\color{red} Заем/кредит} 
+\item Продажба на активи
+\item ...
+\end{itemize} 
+\item Фирма 
+\begin{itemize}
+\item Акции
+\item Облигации
+\item {\color{red} Кредит}
+\item Продажба на активи
+\item ...
+\end{itemize}
+\end{itemize}
+{\large Ще разгледаме ролята на банковата система като финансов посредник}
+\end{frame}
+
+\begin{frame}
+\frametitle{Банките като финансов посредник}
+\framesubtitle{}
+\begin{itemize}
+\item Основни източници на ресурси
+\begin{itemize}
+\item Депозити
+\item Облигации
+\item Акции
+\item Директни заеми
+\end{itemize}
+\item Основни начини за употреба на ресурсите
+\begin{itemize}
+\item Кредитиране
+\item Инвестиции в ценни книжа
+\item Депозити
+\end{itemize}
+\item Банките плащат цена за достъп до източниците на ресурси
+\item Агентите, ползващи ресурси от банките, също заплащат цена за това
+\item В голяма част от случаите цената е под формата на лихва
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Банките като финансов посредник}
+\framesubtitle{}
+\begin{itemize}
+\item Цената на ресурсите и употребата на ресурсите са свързани
+\item \textbf{Пример 1}: засилено търсене на кредити $ \rightarrow $ нужда от допълнителни ресурси \textbf{и} повишаване на лихвите по кредитите $ \rightarrow $ повишаване на лихвите по депозитите за привличане на ресурси
+\item \textbf{Пример 2}: намалено предлагане на депозити от спестителите $ \rightarrow $ нужда да се привлече допълнителен ресурс $ \rightarrow $ повишаване на лихвите по депозитите $ \rightarrow $ банките пренасят това върху лихвените проценти по кредитите 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Роля на централната банка}
+\framesubtitle{}
+\begin{itemize}
+\item Когато се провежда активна парична политика, централната банка може да предоставя назаем средства на другите банки
+\item Лихвеният процент по тези заеми се определя от централната банка
+\item Чрез този лихвен процент може да се влияе върху икономиката
+\begin{itemize}
+\item Пример
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Инструменти на централната банка}
+\framesubtitle{Пример -- Европейска централна банка}
+\begin{itemize}
+\item Операции на открития пазар
+\item Ликвидни улеснения с постоянен достъп 
+\item Минимални задължителни резерви
+\end{itemize}
+\end{frame}
+
+\end{document}

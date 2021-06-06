@@ -1,0 +1,188 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+% \setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{} % Suppresses the navigation symbols in BEAMER
+\title[Пазар на труда]{Пазар на труда}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Увод}
+\framesubtitle{}
+Две групи показатели:
+\begin{itemize}
+\item съдържащи информация за възнаграждението, получавано на пазара на труда
+\begin{itemize}
+\item средна работна заплата за страната 
+\item данни от наблюдения на средствата за работна заплата
+\item разходи за труд
+\item структура на заплатите (по отрасли, по образование и пр.)
+\end{itemize}
+\item съдържащи информация за количествените характеристики на наличния трудов ресурс
+\begin{itemize}
+\item работна сила
+\item заетост
+\item безработица
+\end{itemize}
+\end{itemize}
+Има и производни индикатори, напр. коефициент на безработица
+\end{frame}
+
+\begin{frame}
+\frametitle{Дефиниции на основните показатели}
+\framesubtitle{}
+\begin{itemize}
+\item \emph{Работоспособно население} -- всички лица на 15 и повече навършени години (или, според някои дефиниции, на възраст между 15 и 65 години)
+\item \emph{Работна сила} (\emph{икономически активно население}) -- лицата на 15 и повече навършени години, които влагат или предлагат своя труд за производство на стоки и услуги
+\item \emph{Икономически неактивно население} -- онази част от работоспособното население, която не е в работната сила
+\begin{itemize}
+\item \emph{Обезкуражени лица} -- лицата на 15 и повече навършени години, които по принцип биха желали да работят, но не търсят активно работа, защото предполагат, че няма да намерят
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Дефиниции на основните показатели}
+\framesubtitle{}
+\begin{itemize}
+\item \emph{Заети лица} -- лица на 15 или повече години, които за даден период извършват работа срещу заплащане или се водят на работа, макар да не полагат труд през периода поради различни причини (редовен или болничен отпуск, майчинство, лоши климатични условия, стачки). 
+\item Заетите са част от работната сила и включват:
+\begin{itemize}
+\item работодатели
+\item наети лица (извършващи срещу възнаграждение работа за определен работодател, обикновено по някакъв вид договор)
+\item самонаети лица (такива, които самостоятелно работят на свободна (частна) практика)
+\item неплатени семейни работници (напр. работещи без явно определено
+заплащане в семейния бизнес)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Дефиниции на основните показатели}
+\framesubtitle{}
+\begin{itemize}
+\item \emph{Безработните лица} -- лица на възраст
+от 15 до 74 години, които:
+\begin{enumerate}
+\item нямат работа за съответния период
+\item активно търсят работа
+\item са на разположение за започване на работа в кратък срок от време
+\end{enumerate}
+\item За всеки от тези критерии има методологически уточнения
+\begin{itemize}
+\item Пример: ,,кратък срок от време'' се определя като 2 седмици след края на наблюдавания период
+\end{itemize}
+\item Безработните са също част от работната сила
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основни връзки на пазара на труда}
+\framesubtitle{}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l l}
+\addlinespace
+\toprule
+      & Работоспособно население \\
+-     & Икон. неакт.насел. \\   \midrule
+      & Работна сила (икон. активно население) \\
+-     & Безработни \\    \midrule
+      & Заети \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основни показатели на пазара на труда}
+\framesubtitle{}
+\beq \textrm{Коефициент на безработица}=\frac{\textrm{Безработни}}{\textrm{Раб. сила}}
+\label{eq:UnempRate}\eeq
+
+\beq \textrm{Коефициент на заетост} = \frac{\textrm{Заети}}{\textrm{Работоспос. население}}
+\label{eq:EmplRate}\eeq
+
+\beq \textrm{Коефициент на икон. активност} = \frac{\textrm{Раб. сила}}{\textrm{Работоспос. население}} 
+\label{eq:EcActRate}\eeq
+\end{frame}
+
+\begin{frame}
+\frametitle{Основни показатели за пазара на труда в България}
+\framesubtitle{}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l r}
+\addlinespace
+\toprule
+{ } & { \textbf{2005}} \\
+\midrule
+Работна сила - хиляди & 3314  \\
+Коефициент на икон. активност - \% & 49.7  \\
+Заети лица - хиляди & 2980  \\
+ в т.ч. наети по трудово  & 2177  \\
+ \quad и служебно правоотношение &   \\
+Коефициент на заетост - \% & 44.7  \\
+Безработни лица - хиляди & 334   \\
+Коефициент на безработица - \% & 10.1  \\
+Обезкуражени лица - хиляди & 345   \\
+Средна годишна работна заплата  & 3885  \\
+\quad на наетите лица - лева &   \\
+\bottomrule Източник: НСИ
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+\end{document}

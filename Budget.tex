@@ -1,0 +1,237 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+% \setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{} % Suppresses the navigation symbols in BEAMER
+\title[Бюджетна статистика]{Бюджетна статистика}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Увод}
+\framesubtitle{}
+\begin{itemize}
+\item Бюджетната статистика включва източниците на статистическа информация за икономическите дейности, извършвани от сектор \textit{Държавно управление} 
+\item Основни източници:
+\begin{itemize}
+\item статистика на бюджета
+\item статистика на държавния дълг
+\item национални сметки
+\end{itemize}
+\item Най-често се използва т.нар. \emph{консолидиран бюджет} или \emph{консолидирана фискална програма (КФП)}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Структура на КФП}
+\framesubtitle{}
+Три основни групи:
+\begin{itemize}
+\item Приходи
+\item Разходи
+\item Финансиране
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Структура на КФП}
+\framesubtitle{Приходи}
+\begin{itemize}
+\item данъчни приходи: данък върху добавената стойност, данъци върху дохода или
+върху печалбата, данъци върху собствеността, акцизи, ... 
+\item неданъчни приходи: социалноосигурителни вноски, доходи от собственост или продажби на правителството, глоби, ...
+\item помощи: текущи и капиталови трансфери
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Структура на КФП}
+\framesubtitle{Разходи}
+\begin{itemize}
+\item заплати и социалноосигурителни вноски за заетите в бюджетната сфера
+\item разходи за текуща издръжка (консумативи, енергия)
+\item лихвени плащания
+\item социални разходи (пенсии, помощи за безработни, стипендии)
+\item субсидии
+\item капиталови разходи (инвестиционните разходи на правителството)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Структура на КФП}
+\framesubtitle{Финансиране}
+\begin{itemize}
+\item $\textrm{приходи}-\textrm{разходи}=\textrm{бюджетно салдо}$
+\item салдо $<0$ -- дефицит; салдо $>0$ -- излишък
+\item Дефицит $\longrightarrow$ взели сме пари от някъде
+\item Излишък $\longrightarrow$ спестените пари са отишли някъде \pause
+\item Финансирането показва как е станало това
+\item Пример при дефицит:
+\begin{itemize}
+\item директни външни заеми
+\item емисии на ценни книжа (купуват се от резиденти или нерезиденти)
+\item намаление на депозити на правителството
+\item приватизация или продажба на активи на правителството
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{}
+\framesubtitle{}
+\begin{table}[htbp]
+  \centering
+   \begin{tabular}{l r}
+    \toprule
+     КФП за България, млн. лева     & { \textbf{2006}} \\
+    \midrule
+    I. Приходи и помощи & 20 023 \\
+    \quad Данъчни приходи & 16 329 \\
+    \quad Неданъчни приходи & 3 070 \\
+    \quad Помощи & 625 \\
+    ІІ. Разходи & 18 267 \\
+    \quad Заплати и възнаграждения за персонала & 2 731 \\
+    \quad Социални и здравно-осигурителни вноски & 867 \\
+    \quad Текуща издръжка & 3 820 \\
+    \quad Лихви & 640 \\
+    \quad \quad Лихви по външни заеми & 449 \\
+    \quad \quad Лихви по вътрешни заеми & 191 \\
+    \quad Социални разходи, стипендии & 7 013 \\
+    \quad Субсидии & 725 \\
+    \quad Капиталови разходи, прираст на  & 2 471 \\
+    \quad \quad държавния резерв и др. &  \\
+   $\cdots$ & $\cdots$ \\
+    \end{tabular}
+\end{table}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{}
+\framesubtitle{}
+\begin{table}[htbp]
+  \centering
+   \begin{tabular}{l r}
+    \toprule
+     КФП за България, млн. лева     & { \textbf{2006}} \\
+    \midrule
+   $\cdots$ & $\cdots$ \\
+    ІІІ. Трансфери-нето /предоставени(-)/ & 0 \\
+    ІV. Дефицит/излишък & 1 756 \\
+    V. Финансиране & -1 756 \\
+    \quad Външно финансиране - нето & -915 \\
+    \quad \quad Външни заеми и погашения (нето) & -521 \\
+    \quad \quad Погашения по предоставени  & 8 \\
+    \quad \quad \quad кредити на др. държави (+) &  \\
+    \quad \quad Операции с ценни книжа  & 0 \\
+    \quad \quad \quad и финансови активи &  \\
+    \quad \quad Депозити в чужбина (нето) & -402 \\
+    \quad Вътрешно финансиране - нето & -1 603 \\
+    \quad \quad Небанково & -27 \\
+    \quad \quad Банково  & -1 576 \\
+    \quad Приватизация, придобиване на дялове   & 763 \\
+    \quad \quad  и акции, и възмездни средства - нето &  \\
+    \bottomrule Източник: МФ
+    \end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Касова и начислена основа}
+\framesubtitle{}
+\begin{itemize}
+\item Ако записваме потоците в бюджетната статистика в периода, когато съответните задължения са възникнали -- \emph{статистика на начислена основа}
+\item Ако записваме потоците в бюджетната статистика в периода, когато съответните задължения реално са били уредени -- \emph{статистика на касова основа}
+\item Разлики между двата метода
+\begin{itemize}
+\item закъснения в дължими плащания от страна на правителството или на частни лица 
+\item договорени между страните разминавания между възникване на задължение и реално плащане
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Консолидация}
+\framesubtitle{}
+\begin{itemize}
+\item КФП се нарича ,,консолидирана,'' защото тя обединява информация за дейността на различни институции в рамките на сектор \textit{Държавно управление}
+\item В процеса на консолидиране се елиминират транзакциите и задълженията между институциите, които са част от правителствения сектор
+\item В КФП се консолидират: \begin{itemize}
+\item бюджетът на централното правителство (републикански бюджет)
+\item бюджети на общините
+\item бюджет на социалноосигурителната система
+\item бюджет на съдебната власт
+\item бюджет на БАН
+\item бюджети на ВУЗ
+\item ...
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Видове салда}
+\framesubtitle{}
+\begin{itemize}
+\item Когато се работи на касова основа, общият баланс на бюджета се нарича \emph{касов баланс} или \emph{касово салдо}
+\item Може да имаме и други видове салда (аналогия с аналитичните представяния на платежния баланс)
+\item Примери:
+\begin{itemize}
+\item касово салдо с извадени нетни лихвени плащания на бюджета $\rightarrow$ \emph{първично салдо}
+\item салдо без вноската в бюджета на ЕС
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\end{document}

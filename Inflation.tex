@@ -1,0 +1,194 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+% \setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{} % Suppresses the navigation symbols in BEAMER
+\title[Инфлация]{Ценови индекси и инфлация}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Уводни бележки}
+\begin{itemize}
+\item Как измерваме какво става с цените на макро ниво, след като в икономиката има много голям набор от цени на отделни стоки и услуги?
+\item Няма показател ,,инфлация'', има различни ценови индекси
+\item Какво означават инфлация, дефлация и дисинфлация
+\item Някои често срещани ценови индекси -- ИПЦ, ХИПЦ,ИЦП, дефлатори
+\end{itemize}
+\end{frame}
+
+\begin{frame}\frametitle{Ценови индекси}
+Общият вид на произволен ценови индекс е
+$$\textrm{Index}=\sum_{i=1}^n w_i \frac{P_{i,t}}{P_{i,t-j}},$$
+където $n$ е броят на наблюдаваните стоки (категории, отрасли), $w_i$ е теглото на $i$-тата стока в
+индекса, а $P_{i,t}$ е цената \'и в период $t$. 
+\end{frame}
+
+\begin{frame}\frametitle{Ценови индекси}
+Основни елементи:
+\begin{itemize}
+\item  обхват  -- броят на стоките $n$ и изборът на конкретните стоки или категории
+\item  избор на тегла
+	\begin{itemize}
+	\item Пример: за ИПЦ теглата се вземат от структурата на разходите на домакинствата за съответните стоки
+	\end{itemize}
+\item  интервал от време $j$, за който се конструира
+индексът 
+	\begin{itemize}
+	\item за месечни данни най-често е един месец -- $j=1$
+	-- или една година -- $j=12$
+	\end{itemize}
+\end{itemize}
+
+Началният период $t-j$ се нарича базисен период или база. 
+
+Понякога индексът се конструира при сравнение със средната цена за няколко периода:
+$$\textrm{Index}=\sum_{i=1}^n w_i \frac{P_{i,t}}{\frac{1}{k}\sum_{j=1}^k P_{i,s-j}},$$
+\end{frame}
+
+\begin{frame}  \frametitle{Хармонизиран индекс на потребителските цени за България, 2003-2006 г., база 2005=100}
+\begin{figure}[htbp]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=0.75\textwidth]{hipc}\\
+\end{figure}
+\end{frame}
+
+
+\begin{frame}  \frametitle{Начини за представяне на инфлацията}
+\begin{itemize}
+\item  При използване на ценови индекс с фиксирана база е трудно да се разбере каква е текущата динамика на цените  \pause
+\item Възможно решение: пресмятане на инфлацията при променяща се база
+\item Инфлация на база предходен месец
+\end{itemize}
+\end{frame}
+
+\begin{frame}  \frametitle{Инфлация според ХИПЦ за България за 2004-2006 г. на база предходен месец, \%}
+\begin{figure}[htbp]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=0.75\textwidth]{infl-t-1}\\
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Начини за представяне на инфлацията}
+\framesubtitle{}
+\begin{itemize}
+\item Инфлацията, изчислена на база предходен месец, се влияе от сезонни фактори
+\item Това може да бъде (частично) преодоляно, ако инфлацията се пресмята на база съответен месец на предходната година
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}  \frametitle{Инфлация според ХИПЦ за България за 2004-2006 г. на база съответен месец на предходната година, \%}
+\begin{figure}[htbp]
+  % Requires \usepackage{graphicx}
+  \centering
+  \includegraphics[width=0.75\textwidth]{infl-t-12}\\
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Начини за представяне на инфлацията}
+\framesubtitle{Статистически методи}
+\begin{itemize}
+\item Един ценови индекс при фиксирана база може да бъде обработен със статистически техники с цел отстраняване на тренд, сезонни фактори, фактори с еднократен характер и пр.
+\item Тези процедури често се наричат ,,сезонно изглаждане'' (независимо, че не се отстраняват само сезонни фактори)
+\item За повече информация: X12 ARIMA, TRAMO/SEATS
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Инфлация в края на периода и инфлация средно за период}
+\begin{itemize}
+\item Инфлацията за даден месец на база съответния месец на предходната година (\emph{инфлация в края на периода}) може да не представя достатъчно информация за динамиката на цените за периода
+\item За целта се дефинира друг измерител: \emph{инфлация средно за периода}
+\item Пример
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}  \frametitle{Примерно изчисляване на средна инфлация и инфлация в края на периода за една стока}
+\begin{table}[htbp]
+\centering
+\begin{footnotesize}
+\begin{tabular}{r r r r r}
+%\addlinespace
+\toprule
+Месец & Цена, година t & Цена, година t+1 & \multicolumn{ 2}{c}{Годишна инфлация} \\
+\midrule
+      &  лв.  &  лв.  & Индекс & Темп, \% \\   \midrule
+1     & 50    & 50    & 100   & 0 \\
+2     & 50    & 60    & 120   & 20 \\
+3     & 50    & 60    & 120   & 20 \\
+4     & 50    & 60    & 120   & 20 \\
+5     & 50    & 60    & 120   & 20 \\
+6     & 50    & 60    & 120   & 20 \\
+7     & 50    & 60    & 120   & 20 \\
+8     & 50    & 60    & 120   & 20 \\
+9     & 50    & 60    & 120   & 20 \\
+10    & 50    & 60    & 120   & 20 \\
+11    & 50    & 60    & 120   & 20 \\
+12    & 50    & 50    & 100   & 0 \\   \midrule
+Средна & 50    & 58.3  & 116.7 & 16.7 \\
+\bottomrule
+\end{tabular}
+\end{footnotesize}
+\end{table}
+\end{frame}
+
+
+
+
+\end{document}

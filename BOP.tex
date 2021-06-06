@@ -1,0 +1,371 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+% \setbeamercovered{transparent}
+\setbeamertemplate{navigation symbols}{} % Suppresses the navigation symbols in BEAMER
+\title[Външен сектор]{Статистика на външния сектор}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Увод}
+\framesubtitle{}
+\begin{itemize}
+\item Интересува ни да измерим икономическите взаимоотношения между нашата икономика и останалите държави (\emph{останал свят})
+\item Основни статистически източници:
+\begin{itemize}
+\item Платежен баланс
+\item Международна инвестиционна позиция
+\item Статистика на външния дълг
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Потоци и размери (запаси)}
+\framesubtitle{}
+\begin{itemize}
+\item Размери (запаси)
+\begin{itemize}
+\item Регистрират се към даден момент от времето (на дадена дата)
+\item Дават ,,моментна снимка''
+\item Примери: стока в склада на една фирма в края на даден ден, сумата от
+спестяванията на даден човек в края на годината, наличното количество пари в икономиката в определен момент
+\end{itemize}
+\item Потоци
+\begin{itemize}
+\item Задават се за период от време
+\item Показват изменение за периода
+\item Примери: произведената продукция за определено тримесечие, месечната заплата, отпуснатите от една банка заеми за дадена седмица
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Потоци и размери (запаси)}
+\framesubtitle{}
+\begin{itemize}
+\item Между потоци и размери има връзка: изменението на даден размер между два момента от времето задава поток (който на свой ред може да се състои от други потоци)
+\item За външния сектор:
+\begin{itemize}
+\item Платежен баланс -- потоци
+\item Международна инвестиционна позиция и външен дълг -- размери
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Платежен баланс}
+\framesubtitle{Общи положения}
+\begin{itemize}
+\item В платежния баланс се записват стойностите на транзакциите между местни и чуждестранни икономически агенти за определен период от време
+\item Има транзакции с реален и с финансов характер
+\item Транзакциите са свързани с входящи или изходящи парични потоци
+\item Най-общо платежният баланс се подразделя на две части
+\begin{itemize}
+\item текуща сметка
+\item капиталова и финансова сметка
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Основни връзки в платежния баланс}
+\framesubtitle{}
+Основно тъждество:
+\beq \textrm{CA} + \textrm{FKA} \equiv 0,  \label{eq:BoPidentity1}\eeq
+където $\textrm{CA}$ -- нетен баланс на транзакциите по текущата сметка, $\textrm{FKA}$ -- нетен баланс на транзакциите по капиталовата и финансовата сметка
+
+\medskip Текуща сметка:
+\beq \textrm{CA}:=X-M+Y_f+\textrm{Tr}_f \label{eq:CA1}\eeq
+
+Текущата сметка може още да бъде записана като \beq
+\textrm{CA}=\textrm{GNDI}-C-I-G = \textrm{GNDI}-A ,
+\label{eq:CA2}\eeq където $A:=C+I+G$ се нарича
+\emph{абсорбция}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основни връзки в платежния баланс}
+\framesubtitle{}
+Вътрешни спестявания: \beq S^d := Y-C-G  \label{eq:S_dom}\eeq
+
+Национални спестявания:  \beq S := \textrm{GNDI}-C-G = Y+Y_f+\textrm{Tr}_f-C-G  \label{eq:S_natl}\eeq
+
+Тогава за текущата сметка имаме: \beq \textrm{CA}=S-I \label{eq:CA3}\eeq
+\end{frame}
+
+\begin{frame}
+\frametitle{Стандартно и аналитично представяне на платежния баланс}
+\framesubtitle{}
+\begin{itemize}
+\item Основното тъждество на платежния баланс е свързано с т.нар. \emph{стандартно представяне}
+\item Стандартното представяне подчертава счетоводните принципи и връзките между реални и финансови транзакции, но може да не е толкова удобно за анализ на икономическите процеси
+\item За целта от него се конструират представяния на платежния баланс, които са подходящи за аналитични цели, т.нар. \emph{аналитични представяния}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Стандартно и аналитично представяне на платежния баланс}
+\framesubtitle{}
+\begin{itemize}
+\item При аналитичните представяния най-често текущата сметка се запазва, а разделение се въвежда за капиталовата и финансовата сметка
+\item Популярен вариант е да се създаде нов раздел, включващ изменението на валутните резерви и част от целевото финансиране за макроикономическа стабилизация, получено от международни институции
+\end{itemize}
+\beq \textrm{CA} + \textrm{FKA} - \Delta \textrm{Res} \equiv 0 
+\label{eq:BoPidentity2}\eeq
+
+\beq \textrm{FKA} = \textrm{KA} + \textrm{FDI} + \textrm{PortfInv} +
+\textrm{OtherInv}. \label{eq:FA}\eeq
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{}
+\framesubtitle{}
+\begin{table}[htbp]
+  \centering
+    \begin{tabular}{l r}
+    \addlinespace
+    \toprule
+     Платежен баланс за България, млн. евро     & { \textbf{2004}} \\
+    \midrule
+    А. Текуща сметка & -1307 \\
+    \quad Стоки: кредит (f.o.b.) & 7985  \\
+    \quad Стоки: дебит (f.o.b.) & -10938 \\
+    \quad \quad \quad Търговски баланс & -2953 \\
+    \quad Услуги: кредит & 3262  \\
+    \quad Услуги: дебит & -2606 \\
+    \quad \quad \quad Услуги, нето & 656   \\
+    \quad Доход: кредит & 1238  \\
+    \quad \quad Компенсации на наетите: кредит & 1036  \\
+    \quad \quad Инвестиционен доход: кредит & 203   \\
+    \quad Доход: дебит & -992  \\
+    \quad \quad Компенсации на наетите: дебит & -9    \\
+    \quad \quad Инвестиционен доход: дебит & -983  \\
+    \quad \quad \quad Доход, нето & 246   \\
+    \quad \quad \quad Текущи трансфери, нето  & 744   \\
+ $\cdots$ & $\cdots$
+    \end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\framesubtitle{}
+\begin{table}[htbp]
+  \centering
+    \begin{tabular}{l r}
+    \addlinespace
+    \toprule
+     Платежен баланс за България, млн. евро     & { \textbf{2004}} \\
+    \midrule
+	$\cdots$ & $\cdots$ \\
+    Б. Капиталова сметка & 163   \\
+    В. Финансова сметка & 2295  \\
+    \quad    Преки инвестиции, нето & 2252  \\
+    \quad Портфейлни инвестиции: активи & -52   \\
+    \quad Портфейлни инвестиции: пасиви & -436  \\
+    \quad Други инвестиции-активи & -1367 \\
+    \quad \quad  Търговски кредити: активи, нето & -149  \\
+    \quad \quad  Заеми: активи & -46   \\
+    \quad \quad  Валута и депозити: активи & -610  \\
+    \quad \quad  Други активи & -561  \\
+    \quad Други инвестиции: пасиви & 1897  \\
+    \quad \quad  Търговски кредити: пасиви, нето & 88    \\
+    \quad \quad  Заеми: пасиви & 1316  \\
+    \quad \quad  Депозити на нерезиденти: пасиви & 514   \\
+    \quad \quad   Други пасиви & -20   \\
+	$\cdots$ & $\cdots$ \\
+    \end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\framesubtitle{}
+\begin{table}[htbp]
+  \centering
+    \begin{tabular}{l r}
+    \addlinespace
+    \toprule
+     Платежен баланс за България, млн. евро     & { \textbf{2004}} \\
+    \midrule
+	$\cdots$ & $\cdots$ \\
+    Г. Грешки и пропуски & 263   \\
+    ОБЩ БАЛАНС (А + Б + В + Г) & 1415  \\
+    Д. Резервни активи на БНБ & -1415 \\
+    \quad \quad и друго финансиране  &   \\
+    \quad  Резервни активи на БНБ (увеличение: -) & -1493 \\
+    \quad  Ползвани кредити от МВФ, нето & -44   \\
+    \quad  Извънредно финансиране, нето  & 123   \\
+    \bottomrule Източник: БНБ
+    \end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Външен дълг}
+\framesubtitle{}
+\begin{itemize}
+\item Външният дълг включва стойността на всички задължения на местни икономически агенти към нерезиденти към даден момент
+\item Задълженията могат да включват бъдещи плащания както на главници, така и на лихви
+\item Примери 
+\begin{itemize}
+\item емитирани от местни лица облигации, закупени от нерезиденти
+\item директни заеми от чуждестранни икономически агенти
+\item задължения по търговски кредити
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Външен дълг}
+\framesubtitle{}
+\begin{itemize}
+\item \emph{Брутен външен дълг} -- отчита колко дадена икономика дължи на останалия свят, но не и какви са задълженията на нерезиденти към съответната икономика
+\item \emph{Нетен външен дълг} -- размерът на брутния външен дълг, намален с размера на задълженията на чужди икономически агенти към националната икономика
+\item Има различни представяния (разбивки) на брутния външен дълг
+\begin{itemize}
+\item според институционалните сектори, които са длъжници
+\item по кредитори (международни организации, чужди правителства, чуждестранни банки, други нерезиденти)
+\item по инструменти (ценни книжа, заеми, търговски кредити, депозити на нерезиденти и пр.)
+\item по матуритет (краткосрочен -- с падеж до 1 година и дългосрочен -- с падеж над 1 година)
+\item по географски признак (по страни/региони на кредиторите)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\framesubtitle{}
+\begin{table}[htbp]
+\centering
+\begin{tabular}{l r}
+\addlinespace
+\toprule
+Брутен външен дълг за България, млн. евро     & { \textbf{2006}} \\
+\midrule
+І. Държавно управление & 3701 \\
+\quad Краткосрочен & 0 \\
+\quad Дългосрочен & 3701 \\
+ІІ. Централна банка & 0 \\
+\quad Краткосрочен & 0 \\
+\quad Дългосрочен & 0 \\
+II. Банки & 3549 \\
+\quad Краткосрочен & 2636 \\
+\quad Дългосрочен & 913 \\
+IV. Други сектори & 7290 \\
+\quad Краткосрочен & 3630 \\
+\quad Дългосрочен & 3659 \\
+V. Преки инвестиции: Вътрешнофирмени заеми & 6089 \\
+БРУТЕН ВЪНШЕН ДЪЛГ (I+II+III+IV+V) & 20629 \\
+\bottomrule Източник: БНБ
+\end{tabular}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Международна инвестиционна позиция}
+\framesubtitle{}
+\begin{itemize}
+\item Дава стойността на активите и пасивите на една икономика по отношение на останалия свят към даден момент
+\begin{itemize}
+\item външни активи на една икономика -- права на икономическите агенти да получат в бъдещето плащания от нерезиденти
+\item външни пасиви -- права на нерезиденти да получат плащания от местни икономически агенти
+\end{itemize}
+\item Структурата на активната и пасивната страна на международната инвестиционна позиция е подобна на структурата на финансовата сметка на платежния баланс...
+\item МИП към две дати и финансовата сметка на платежния баланс за съответния период дават размери и съответстващия им поток
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+\framesubtitle{}
+\begin{table}[htbp]
+\centering
+\begin{footnotesize}
+\begin{tabular}{l r}
+\toprule
+МИП за България, млн. евро      & { \textbf{2005}} \\
+\midrule
+\textit{Международна инвестиционна позиция} & \textit{-10 258} \\
+\textit{Активи} & \textit{13 273} \\
+\quad   Преки инвестиции в чужбина & 105   \\
+\quad   Портфейлни инвестиции & 670   \\
+\quad   Финансови деривативи & 24    \\
+\quad   Други инвестиции & 5 103 \\
+\quad   \quad    Търговски кредити & 438   \\
+\quad   \quad    Заеми & 163   \\
+\quad   \quad    Валута и депозити & 2 575 \\
+\quad   \quad    Други активи & 1 927 \\
+\quad   Резервни активи & 7 370 \\
+\textit{Пасиви} & \textit{23 531} \\
+\quad   Преки инвестиции в България & 11 756 \\
+\quad   Портфейлни инвестиции & 2 243 \\
+\quad   Финансови деривативи & 33    \\
+\quad   Други инвестиции & 9 498 \\
+\quad   \quad    Търговски кредити & 1 070 \\
+\quad   \quad    Заеми & 6 928 \\
+\quad   \quad    Валута и депозити & 1 397 \\
+\quad   \quad    Други пасиви & 104   \\
+\bottomrule Източник: БНБ
+\end{tabular}
+\end{footnotesize}
+\label{tab:IIP}
+\end{table}
+\end{frame}
+
+\end{document}
