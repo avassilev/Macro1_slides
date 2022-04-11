@@ -1287,5 +1287,198 @@ r_t-\bar{r}=\frac{\bar{\pi}-\pi^T}{a b}+\frac{\lambda}{ab^2}\hat{y}_t
 \end{minipage}}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{}
+	\begin{itemize}
+		\item В практиката една централна банка
+		отчита много фактори при вземане на решения 
+		\item Поради това е трудно да се формулира оптимизационна задача, на базата на която да се получава оптималната политика
+		\item Типично централната банка следи набор от макроикономически променливи и променя политиката си спрямо техните изменения
+		\item Тези промени имат вид на правила за реакция, указващи как ще
+		се изменя лихвеният процент при колебания в избраните променливи: \textbf{прости правила за парична политика}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{}
+	\begin{itemize}
+		\item В нашия модел пример за такова правило е \beq
+		r_t=\bar{r}+d(\pi_t-\pi^T)+e \hat{y}_t, \label{eq:SR} \eeq за
+		инфлационна цел $\pi^T$ и коефициенти $d,e>0$, определящи реакцията
+		на реалния лихвен процент при отклонения от инфлационната цел и
+		потенциалното производство.
+		\item Вариантът на модела с просто правило за парична политика се задава от уравнения \eqref{eq:ISline} и \eqref{eq:PCline} заедно с уравнение \eqref{eq:SR}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{Изразяване на променливите в модела като функция на шоковете и
+		коефициентите}
+	\begin{itemize}
+		\item Заместваме последователно уравнения
+		\eqref{eq:PCline} и \eqref{eq:ISline} в уравнение \eqref{eq:SR}:
+		\begin{equation*}\begin{split} r_t= & \bar{r}+d(\bar{\pi}+b\hat{y}_t+\varepsilon_{2,t}-\pi^T)+e \hat{y}_t = \\ & \bar{r}+d (\bar{\pi}-\pi^T)-a(db+e)r_t+a(db+e)\bar{r}+ \\ & (db+e)\varepsilon_{1,t}+d \varepsilon_{2,t} \end{split}\end{equation*}
+		\item След преобразуване получаваме \begin{equation}\begin{split}
+		r_t= & \bar{r}+\frac{d}{1+a(bd+e)}(\bar{\pi}-\pi^T)+ \\
+		 & \frac{bd+e}{1+a(bd+e)}\varepsilon_{1,t} + \frac{d}{1+a(bd+e)}\varepsilon_{2,t}
+		\label{eq:SRrFshocks}\end{split}\end{equation}
+	\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{Изразяване на променливите в модела като функция на шоковете и
+		коефициентите}
+	\begin{itemize}
+		\item Като заместим израза за $r_t$ от
+		\eqref{eq:SRrFshocks} в \eqref{eq:ISline} и преработим, получаваме
+		\beq \begin{split}\hat{y}_t = &
+			-\frac{ad}{1+a(bd+e)}(\bar{\pi}-\pi^T) + \\ & {} \\ & \left[
+			1-\frac{a(bd+e)}{1+a(bd+e)} \right]\varepsilon_{1,t}-
+			\frac{ad}{1+a(bd+e)}\varepsilon_{2,t} \end{split}
+		\label{eq:SRyhatFshocks}\eeq
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{Изразяване на променливите в модела като функция на шоковете и
+		коефициентите}
+	\begin{itemize}
+		\item Като използваме последния израз
+		за $\hat{y}_t$ в \eqref{eq:PCline}, след преобразуване получаваме
+		\beq \begin{split} \pi_t = & \bar{\pi}-\frac{a b
+				d}{1+a(bd+e)}(\bar{\pi}-\pi^T)+ \\ & {} \\ & b \left[
+			1-\frac{a(bd+e)}{1+a(bd+e)} \right]\varepsilon_{1,t} + \\ & {} \\ & \phantom{b}\left[
+			1-\frac{a b d}{1+a(bd+e)} \right]\varepsilon_{2,t}
+		\end{split} \label{eq:SRpiFshocks}\eeq
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{}
+	\begin{itemize}
+		\item Предвид знаците на коефициентите получаваме, че централната банка ще
+		повишава реалния лихвен процент както при шокове в търсенето, така и при
+		шокове в предлагането. 
+		\item Шокове в търсенето водят до: 
+			\begin{itemize}
+			\item повишаване на производството над потенциалното му ниво
+			\item инфлация, по-висока от равновесната
+			\end{itemize} 
+		\item Шокове в предлагането водят до: 
+			\begin{itemize}
+			\item спад на производството под потенциалното му ниво
+			\item инфлация, отново по-висока от равновесната
+		\end{itemize}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{}
+	\begin{itemize}
+		\item Тези резултати съответстват на стандартните
+		микроикономически резултати, при които нарастване на търсенето води
+		до увеличение на равновесната цена и количество, а спад в
+		предлагането води до нарастване на цената и намаляване на
+		количеството
+		\item За разлика от случая на оптимална политика, при
+		използване на просто правило в този модел централната банка не може
+		напълно да неутрализира реалните ефекти от шок в търсенето
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{Ограничения върху коефициентите на простите правила}
+	\begin{itemize}
+		\item Използването на просто правило от типа на \eqref{eq:SR} може да води
+		до много различни в количествено отношение резултати в зависимост от стойностите на  коефициентите му
+		\item Една възможна схема за ограничаване на допустимите области на изменение на коефициентите е да се прави сравнение с алтернативно правило
+		\item Ще изискваме простото правило да дава поне толкова добри резултати от гледна точка на даден критерий за адекватност, колкото и алтернативното правило
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{Ограничения върху коефициентите на простите правила}
+	\begin{itemize}
+		\item Ще сравним простото правило \eqref{eq:SR} с правилото от политиката за постоянен реален лихвен процент
+		$r_t\equiv \bar{r}$, като за критерий използваме
+		квадратичната функция на загубите \eqref{eq:QuadrLoss} при $ \pi^T = \bar{\pi} $
+		\item За краткост ще
+		означим с $L_j^i$ стойността на функцията на загубите при шок
+		$\varepsilon_{j,t},~j=1,2,$ при използване на правило $i$, където с
+		$i=1$ сме означили правилото $r_t\equiv \bar{r}$, а с $i=2$ сме означили
+		правилото \eqref{eq:SR}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{Ограничения върху коефициентите на простите правила}
+ За политиката на постоянен реален лихвен процент имаме $$L_1^1=(b
+		\varepsilon_{1,t})^2+\lambda \varepsilon_{1,t}^2 =
+		(b^2+\lambda)\varepsilon_{1,t}^2 $$
+		
+		$$L^1_2 = \varepsilon_{2,t}^2+\lambda \cdot 0 = \varepsilon_{2,t}^2 $$		
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{Ограничения върху коефициентите на простите правила}
+	За простото правило имаме 	
+	\begin{equation*} \begin{split} L^2_1 = & b^2 \left[ 1-\frac{a(bd+e)}{1+a(bd+e)} \right]^2 \varepsilon_{1,t}^2 +\lambda \left[ 1-\frac{a(bd+e)}{1+a(bd+e)} \right]^2 \varepsilon_{1,t}^2 = \\ & (b^2+\lambda) \left[ 1-\frac{a(bd+e)}{1+a(bd+e)} \right]^2 \varepsilon_{1,t}^2   \end{split} \end{equation*}
+	
+	\begin{equation*} \begin{split} L^2_2 = & \left[
+			1-\frac{a b d}{1+a(bd+e)} \right]^2\varepsilon_{2,t}^2 + \lambda \left[\frac{ad}{1+a(bd+e)}\right]^2 \varepsilon_{2,t}^2 = \\ & \left\{\left[
+			1-\frac{a b d}{1+a(bd+e)} \right]^2 + \lambda \left[\frac{ad}{1+a(bd+e)}\right]^2 \right\} \varepsilon_{2,t}^2 \end{split} \end{equation*}
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{Ограничения върху коефициентите на простите правила}
+	\begin{itemize}
+		\item Ще искаме да е изпълнено $L^2_j > L^1_j,
+		~j=1,2$, откъдето следва $$\left( 1-\frac{a(bd+e)}{1+a(bd+e)}
+		\right)^2<1$$ и $$\left( 1-\frac{a b d}{1+a(bd+e)} \right)^2 +
+		\lambda \left(\frac{ad}{1+a(bd+e)}\right)^2 <1.$$
+		\item Първото неравенство е тривиално изпълнено понеже всички
+		участващи в израза коефициенти се предполагат положителни
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Прости правила за парична политика}
+	\framesubtitle{Ограничения върху коефициентите на простите правила}
+	\begin{itemize}
+		\item След преобразуване на второто неравенство се стига до израза
+		$$d(a(\lambda-b^2)d-2b)<2abde $$ 
+		\item Като отчетем, че
+		$d>0$, получаваме $$d < \frac{2b(1+ae)}{a(\lambda-b^2)}$$
+		\item Последното неравенство дава съотношение между коефициентите $d$ и
+		$e$, което трябва да е изпълнено, ако искаме простото правило да
+		доминира политиката на постоянен реален лихвен процент от гледна
+		точка на критерия \eqref{eq:QuadrLoss}
+	\end{itemize}
+\end{frame}
+
+
 \end{document}
 
