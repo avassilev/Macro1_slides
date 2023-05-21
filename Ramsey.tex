@@ -1,0 +1,429 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+\DeclareMathOperator*{\const}{const}
+% \setbeamercovered{transparent}
+\title[Модел на Рамзи]{Модел на Рамзи-Кас-Купманс}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основни въпроси}
+\framesubtitle{}
+\begin{itemize}
+	\item Уводни бележки
+	\item Математически апарат
+	\item Модел на Рамзи -- формулировка
+	\item Изследване на модела на Рамзи
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Уводни бележки}
+	\framesubtitle{}
+	\begin{itemize}\itemsep1em
+		\item Основно допускане в модела на Солоу е това за екзогенна фиксирана норма на спестяване $s \in (0,1)$
+		\item Подобно допускане може да бъде отслабено, доколкото е интуитивно, че при различни икономически обстоятелства се спестява различна част от дохода
+		\item Моделът на Рамзи-Кас-Купманс (за краткост често е наричан само ,,модел на Рамзи'') позволява решенията за потребление, спестяване и съответно инвестиции да се вземат ендогенно, на основата на оптимално (в смисъла на решаване на подходяща оптимизационна задача) поведение на съответните икономически агенти, като по този начин обобщава модела на Солоу
+		\item Отново разглеждаме случая на затворена икономика и работим в непрекъснато време 
+	\end{itemize}
+\end{frame}
+
+\newcounter{slidenum} 
+\setcounter{slidenum}{1}
+
+\begin{frame}[fragile]
+	\frametitle{Математически апарат (\arabic{slidenum})}
+	\begin{itemize}\itemsep1em
+		\item Постановките, които ще разглеждаме, изискват да се моделира оптимално поведение в динамика
+		\item Един от възможните математически подходи за целта е с използването на апарат от теорията на оптималното управление
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+	\frametitle{Математически апарат (\arabic{slidenum})}
+	\framesubtitle{Постановка на задачата}
+	Типична задача:
+	\begin{equation}
+		\max_{c(t)}\int_{0}^{T} f(k(t),c(t),t)\,dt,
+		\label{eq:optctrlobj}
+	\end{equation}
+	при ограничението \textbf{фазовата променлива} $k(t)$ да удовлетворява уравнението
+	\begin{equation}
+		\dot{k}(t)=g(k(t),c(t),t),~0\leq t \leq T,
+		\label{eq:optctrlstateeq}
+	\end{equation}(където с точка над съответната буква е означена производната \`и по времето $ t $) при дадена начална стойност
+	\begin{equation}
+		k(0)=k_{0}>0,
+		\label{eq:optctrlinitval}
+	\end{equation}
+	а $ c(t) $ се нарича \textbf{управляваща променлива} или \textbf{управление}.
+\end{frame}
+
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+	\frametitle{Математически апарат (\arabic{slidenum})}
+	\framesubtitle{Постановка на задачата}
+		\begin{itemize}\itemsep1em
+		\item Променливите $ k(t) $ и $ c(t) $ са скаларни в разглеждания от нас случай
+		\item За всички използвани по-нататък свойства на съответните обекти (напр. диференцируемост) ще предполагаме, че са изпълнени, без да правим изрични уточнения
+		\item В типичните икономически приложения се приема, че $T=+\infty$ и съответно интегралът в целевия функционал \eqref{eq:optctrlobj} е от $0$ до $+\infty$ (това по принцип може да създаде математически трудности, които ние ще пренебрегнем тук)
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+	\frametitle{Математически апарат (\arabic{slidenum})}
+	\begin{itemize}\itemsep1em
+		\item Тук ще се ограничим до алгоритмично получаване на необходими условия за оптималност
+		\item За целта се съставя функцията на Хамилтън
+		\begin{equation}
+			J(k,c,t,\mu) = f(k,c,t) + \mu g(k,c,t),
+			\label{eq:optctrlHam}
+		\end{equation}
+		където функцията $ \mu=\mu(t) $ се нарича \textbf{спрегната променлива}
+		\item Необходимите условия в скаларния случай съдържат две уравнения:
+		\begin{equation}
+			\frac{\partial J}{\partial c}=0 \quad \text{ и }\quad \frac{\partial J}{\partial k} + \dot{\mu} = 0,
+			\label{eq:optctrlNCs}
+		\end{equation} и \textbf{условието за трансверсалност}
+		\begin{equation}
+			\lim_{t\rightarrow\infty} \mu(t) k(t) = 0.
+			\label{eq:optctrltransvcond}
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[fragile]\stepcounter{slidenum}
+	\frametitle{Математически апарат (\arabic{slidenum})}
+	\begin{itemize}\itemsep1em
+		\item Необходимите условия \eqref{eq:optctrlNCs} и \eqref{eq:optctrltransvcond} представляват конкретно приложение на т.нар. \textbf{принцип за максимума на Понтрягин}
+		\item Първото условие от \eqref{eq:optctrlNCs} е частен случай на условие за максимизация на $J$ по $c$
+		\item Условието за трансверсалност е необходимо условие само при специални случаи. Това е изпълнено при определени предположения за $ J $, $ \mu $ и \[ f(k,c,t) \equiv e^{-Rt}h(k,c,t),~R>0 \] (вж. края на \S 1.3.9 в приложението на Barro and Sala-i-Martin (1995))
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{}
+	\begin{itemize}\itemsep1em
+		\item В модела има домакинства и фирми
+		\item Домакинствата съществуват вечно
+		\item  Представителното домакинство се характеризира с определени активи $ A(t) $, потребление $ C(t) $ и трудово възнаграждение $ W(t) $
+		\item Населението расте с постоянен темп $ n > 0 $:
+		\begin{equation}
+			L(t)=e^{nt},~L(0)=1.
+			\label{eq:contramLgr}
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства}
+	\begin{itemize}\itemsep1em
+		\item Изменението на финансовите активи на домакинството от момента $ t $ до момента $ t+\Delta t $ има вида
+		\begin{equation*}
+			\begin{split}
+				A(t+\Delta t)-A(t) = & \int_{t}^{t+\Delta t}r(\tau)A(\tau)\, d\tau +  \int_{t}^{t+\Delta t}W(\tau)\, d\tau - \\
+				& \int_{t}^{t+\Delta t}C(\tau)\, d\tau ,
+			\end{split}
+		\end{equation*}
+		където $ r(t) $ е лихвеният процент в дадения момент $ t $
+		\item Като разделим на $ \Delta t $ и оставим $\Delta t $ да клони към нула, стигаме до диференциалното уравнение
+		\begin{equation}
+			\dot{A}(t)=r(t)A(t)+W(t)-C(t).
+			\label{eq:contramA}
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства}
+	\begin{itemize}\itemsep1em
+		\item Домакинството може да има дълг, което се отразява в отрицателни активи: $A(t)<0$
+		\item Предполагаме пълна заетост, т.е. броят на заетите е равен на населението
+		\item Променливите на глава от населението  означаваме с малки букви: $ w(t):=\frac{W(t)}{L(t)} $, $ c(t):=\frac{C(t)}{L(t)} $ и $ a(t):=\frac{A(t)}{L(t)} $ 
+		\item Тъй като 
+		\[ \frac{\dot{A}(t)}{L(t)} = \left( \frac{A(t)}{L(t)} \right)^{.} + \frac{A(t)\dot{L}(t)}{[L(t)]^{2}} = \dot{a}(t)+n a(t), \]
+		от \eqref{eq:contramA} следва
+		\begin{equation}
+			\dot{a}(t) = (r(t)-n)a(t) + w(t) - c(t)
+			\label{eq:contrama}
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства}
+	\begin{itemize}\itemsep1em
+		\item Полезността от потреблението на един индивид се измерва с \textbf{функция на полезност} (наричана понякога и felicity function):
+		\[ u=u(c),\quad u : [ 0,+\infty ) \longrightarrow \mathbb{R}, \]
+		която е достатъчно гладка и има свойствата
+		\begin{equation}
+			\left\{ \begin{array}{l l}
+				u'(c)>0, & u''(c)<0, \\
+				\lim\limits_{c\rightarrow 0+}u'(c)=+\infty, & \lim\limits_{c\rightarrow +\infty}u'(c)=0.
+			\end{array} \right.
+			\label{eq:contramFelicity}
+		\end{equation}
+		\item Общата полезност в момента $ t $ е 
+		\begin{equation}
+			u(c(t))e^{nt},
+			\label{eq:contramEconwideutil}
+		\end{equation}
+		т.е. индивидуалната полезност, умножена с броя на индивидите
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства}
+	\begin{itemize}\itemsep1em
+		\item За да се отчетат предпочитанията на потребителите по отношение на момента от времето, в който тази полезност се реализира, въвеждаме дисконтиращ множител $ e^{-\rho t},~\rho = \const > 0 $, за полезността \eqref{eq:contramEconwideutil}
+		\item По-големите стойности на $\rho$ означават по-малка полезност за фиксиран момент от времето $t$, което може да се интерпретира като по-висока степен на ,,нетърпеливост''
+		\item Ако полезността $ u(c(t)) $ е ограничена функция (например ако $ c(t)\in [0,C],~C = \const $), тогава при $ \rho>n $ изразът
+		\begin{equation}
+			U = \int_{0}^{\infty}u(c(t))e^{nt}e^{-\rho t}\,dt
+			\label{eq:contramTotutil}
+		\end{equation}
+		за тоталната полезност за всички домакинства от избрания поток на потребление $c=c(t),~t\in[0,+\infty)$ е \emph{сходящ} интеграл.
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства}
+	\begin{itemize}\itemsep1em
+		\item Може да се покаже, че за оптималното потребление е невъзможно да се получи $c(t) = 0$ за някое $t$
+		\item Потенциален проблем в модела е възможността представителното домакинство да натрупва верижно все по-големи дългове, с които едновременно да финансира потребление и да връща старите задължения. Това е т.нар. \textbf{игра на Понци} (Ponzi).
+		\item За да забраним тази възможност ще поискаме асимптотично (т.е. за $ t\rightarrow \infty $) да бъде изпълнено активите на едно лице да бъдат неотрицателни
+			\begin{itemize}
+			\item В частност, това обхваща случая, когато отрицателните стойности на $ a(t) $ (т.е. дълговете за едно лице) клонят към нула
+			\end{itemize}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства}
+	\begin{itemize}\itemsep1em
+		\item При нашите означения ограничението за забрана на игри на Понци се изразява в модифициран вид с условието
+		\begin{equation}
+			\lim\limits_{t\rightarrow +\infty} a(t)e^{-\int_{0}^{t}(r(\tau)-n)\,d\tau}\geq 0.
+			\label{eq:contramNoPonzi}
+		\end{equation}
+		\item Модификации
+			\begin{itemize}\itemsep1em
+			\item Има дисконтиране
+			\item Присъства множителят $ e^{nt} $ ( = брой на индивидите)
+			\end{itemize}
+		\item Интерпретация: настоящата стойност на нетните активи на агентите в цялата икономика асимптотично е неотрицателна
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства}
+В крайна сметка се стига до следната задача: \bigskip
+
+Да се максимизира по $ c(t) $ съвкупната полезност $ U $ от \eqref{eq:contramTotutil} при следните условия:
+	\begin{itemize}
+		\item бюджетното ограничение \eqref{eq:contrama}
+		\item зададена начална стойност $ a(0)=a_0 $
+		\item ограничението \eqref{eq:contramNoPonzi} върху заемите
+		\item управлението $ c(t) $ се избира от $ [0,+\infty) $ за всяко $t$
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства -- необходими условия}
+За да получим \emph{необходимите условия} от първи ред, образуваме хамилтониана
+\begin{equation}
+	J = u(c)e^{-(\rho-n)t} + \nu(t)[w(t)+(r(t)-n)a(t)-c(t)].
+	\label{eq:contramHamilt}
+\end{equation}
+
+Тук променливата $ \nu(t) $ (наричана \textbf{спрегната}\index{спрегната променлива}, или множител на Лангранж) е \textbf{сенчестата (скритата) цена}\index{сенчеста (скрита) цена} на богатството $ a(t) $ 
+
+Условията
+\[ \frac{\partial J}{\partial c} = 0 \quad \text{ и }\quad \dot{\nu} = -\frac{\partial J}{\partial a} \]
+имат в случая формата
+\begin{equation}
+	\nu (t) = u'(c(t))e^{-(\rho-n)t},
+	\label{eq:contramNC1}
+\end{equation}
+\begin{equation}
+	\dot{\nu}(t) = - (r(t)-n)\nu(t).
+	\label{eq:contramNC2}
+\end{equation}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства -- необходими условия}
+	Към предходните условия трябва да добавим и \textbf{условието за трансверсалност}\index{условие за трансверсалност}:
+	\begin{equation}
+		\lim\limits_{t\rightarrow \infty}[\nu(t)a(t)] = 0.
+		\label{eq:contramTransvcond}
+	\end{equation} \bigskip
+	
+	Диференцираме \eqref{eq:contramNC1}, записано във вида \[ e^{(\rho-n)t}\nu(t) = u'(c(t)),  \]
+	относно $ t $ и заменяме $ \dot{\nu} $ с израза от \eqref{eq:contramNC2}. Това ни дава
+	\[ e^{(\rho-n)t}\nu(t)(\rho-r(t)) = u''(c(t))\dot{c}(t) . \]
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства -- необходими условия}
+	Последният израз, комбиниран с \eqref{eq:contramNC1}, води до
+	\begin{equation}
+		r(t) = \rho - \left[\frac{u''(c(t))c(t)}{u'(c(t))}\right]\frac{\dot{c}(t)}{c(t)}.
+		\label{eq:contramContEuler}
+	\end{equation} 
+	
+	Понякога \eqref{eq:contramContEuler} се нарича \textbf{уравнение на Ойлер}.\bigskip
+	
+	Напомняме, че \textbf{еластичност} на дадена функция $f(x)$ се дефинира като $\frac{f'(x)x}{f(x)}$ (интерпретация!). \bigskip
+	
+	Съответно изразът в скобите в \eqref{eq:contramContEuler} е еластичността на $ u'(c) $ относно $ c $. Той е отрицателен, понеже $u''(c)<0$. \bigskip 
+	
+	\textbf{Интерпретация}: кога расте ( = се отлага във времето) потреблението?
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства -- необходими условия}
+	От \eqref{eq:contramNC1} имаме
+	\[ \nu(0)=u'(c(0))>0 \]
+	и от \eqref{eq:contramNC2} намираме
+	\begin{equation}
+		\nu(t) = \nu(0)e^{ -\int_{0}^{t}(r(\tau)-n)\,d\tau }.
+		\label{eq:contramNuSolution}
+	\end{equation}
+	
+	Това позволява условието за трансверсалност \eqref{eq:contramTransvcond} да се запише във вида \begin{equation}
+		\lim\limits_{t\rightarrow +\infty}a(t)e^{-\int_{0}^{t}(r(\tau)-n)\,d\tau} = 0,
+		\label{eq:contramTransvcondnew}
+	\end{equation}
+	което е дори по-силно от желаното \eqref{eq:contramNoPonzi}. % N.B. Учебникът ни препраща към eq:optctrltransvcond, което вероятно е грешка
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства -- случаят на CRRA функция на полезност}
+Една често използвана практика е да се вземе следната функция на полезност:
+\begin{equation}
+	u(c)=\frac{c^{1-\theta}-1}{1-\theta},~\theta = \const>0.
+	\label{eq:contramCRRAfunc}
+\end{equation}
+Включването на $ (-1 ) $ в числителя е обичайно, защото така при $ \theta\rightarrow 0+ $ се получава често използваната функция $ \ln c $. \bigskip
+
+Оттук нататък ще предполагаме, че $\theta \in (0, 1) $; за $\theta > 1 $ резултатите са аналогични.
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Домакинства -- случаят на CRRA функция на полезност}
+При направения избор \eqref{eq:contramCRRAfunc} за $ u(c) $ равенство \eqref{eq:contramContEuler} има вида
+\begin{equation}
+	\frac{\dot{c}(t)}{c(t)} = \frac{1}{\theta}(r(t)-\rho).
+	\label{eq:contramEulerCRRA}
+\end{equation}
+
+Оттук се получава
+\begin{equation}
+	c(t)=c(0)e^{ \frac{1}{\theta}[\bar{r}(t)-\rho]t},
+	\label{eq:contramCsol}
+\end{equation}
+където $\bar{r}(t)$ е средният лихвен процент от $ 0 $ до $ t $:
+\begin{equation}
+	\bar{r}(t)=\frac{1}{t}\int_{0}^{t}r(\tau)\,d\tau .
+	\label{eq:contramrbar}
+\end{equation}
+
+В частност, имаме $c(0)>0$ защото $ c(0)=0 $ би означавало $ c(t)=0 $ за всяко $ t $.
+\end{frame}
+
+
+\end{document}
+
+
+
+
+
+%\newcounter{slidenum} 
+%\setcounter{slidenum}{1}
+%\begin{frame}[fragile]\stepcounter{slidenum}
+%	\frametitle{ (\arabic{slidenum})}
+%
+%\end{frame}
+
