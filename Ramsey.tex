@@ -386,7 +386,7 @@
 \end{equation}
 Включването на $ (-1 ) $ в числителя е обичайно, защото така при $ \theta\rightarrow 0+ $ се получава често използваната функция $ \ln c $. \bigskip
 
-Оттук нататък ще предполагаме, че $\theta \in (0, 1) $; за $\theta > 1 $ резултатите са аналогични.
+%Оттук нататък ще предполагаме, че $\theta \in (0, 1) $; за $\theta > 1 $ резултатите са аналогични.
 \end{frame}
 
 
@@ -411,6 +411,304 @@
 \end{equation}
 
 В частност, имаме $c(0)>0$ защото $ c(0)=0 $ би означавало $ c(t)=0 $ за всяко $ t $.
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Фирми}
+		\begin{itemize}\itemsep1em
+		\item Фирмите в модела произвеждат стоки, като заплащат за труда $ L(t) $ и за вложения капитал $ K(t) $
+		\item Производствена технология:
+		\begin{equation}
+			Y = F(K,\hat{L}),
+			\label{eq:contramProdfun}
+		\end{equation}
+		където $ \hat{L}=L(t)A(t) $ е в единици ефективен труд, а $ A(t) $ е нивото на технологията. 
+		\item За улеснение приемаме, че $ A(t) $ расте с постоянна скорост $ x\geq 0 $. Тогава, след нормирането $ A(0)=1 $, намираме \[ A(t)=e^{xt}. \]
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Фирми}
+	\begin{itemize}\itemsep1em
+		\item Променлива $z$ \emph{за единица ефективен труд} се записва като $\hat{z}$ и така нормираните $ Y $ и $ K $  са съответно
+		\[ \hat{y}=\frac{Y}{\hat{L}} \quad \text{ и }\quad \hat{k}=\frac{K}{\hat{L}}, \]
+		а производствената функция в интензивна форма е
+		\[ \hat{y}=f(\hat{k})\equiv F(\hat{k},1), \]
+		където $ f(0) = 0 $ и производните
+		\begin{equation}
+			\frac{\partial Y}{\partial K} = f'(\hat{k}),
+			\label{eq:contramMPK}
+		\end{equation}
+		\begin{equation}
+			\frac{\partial Y}{\partial L} = [f(\hat{k})-\hat{k}f'(\hat{k})]e^{xt}
+			\label{eq:contramMPL}
+		\end{equation}
+		се предполагат положителни. 
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Фирми}
+	\begin{itemize}\itemsep1em
+		\item От условията на Инада за $ F $ съответно следват
+		\begin{equation}
+			\lim\limits_{\hat{k}\rightarrow 0+} f'(\hat{k}) = \infty ,
+			\label{eq:contramfprimeinfty}
+		\end{equation} %
+		\begin{equation}
+			\lim\limits_{\hat{k}\rightarrow \infty} f'(\hat{k}) = 0.
+			\label{eq:contramfprimezero}
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Фирми}
+	\begin{itemize}\itemsep1em
+		\item Ще считаме, че домакинствата са притежатели на капитала, който фирмата наема при \textbf{рентна цена} $ R(t) $
+		\item Ако капиталът се амортизира с постоянна скорост $ \delta\geq 0 $, то чистата възвращаемост за домакинствата е $ R(t)-\delta $ на единица капитал
+		\item Тъй като те могат да заемат средства на други домакинства при лихва $ r(t) $, вместо да купят капитал, по съображения за липса на арбитраж получаваме $ r(t)=R(t)-\delta $, т.е. $ R(t)=r(t) + \delta $
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Фирми}
+	\begin{itemize}\itemsep1em
+		\item Представителната фирма във всеки момент от времето има \textbf{печалба} 
+		\begin{equation}
+			\Pi = F(K,\hat{L}) - (r+\delta)K - wL = \hat{L}[f(\hat{k})-(r+\delta)\hat{k}-w e^{-xt}].
+			\label{eq:contramProfit}
+		\end{equation}
+		\item Тъй като $ \hat{L} $ се счита за дадено във всеки момент, фирмата максимизира печалбата си, подбирайки количеството капитал, и значи в сила е релацията
+		\begin{equation}
+			f'(\hat{k}(t)) = r(t)+\delta.
+			\label{eq:contramProfitmax}
+		\end{equation}
+		\item Знакът на печалбата в оптимум ще зависи от стойността на $w$
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Фирми}
+	\begin{itemize}\itemsep1em
+		\item Приемаме, че фирмите функционират в условия на съвършена конкуренция, което означава, че заплатата ще бъде такава, че печалбата на една фирма да е нула. 
+			\begin{itemize}\itemsep1em
+			\item Ако имахме $\Pi > 0$ за една фирма, какъв би бил стимулът \`и да променя използваното количество труд (нагоре или надолу)? Какъв ефект върху заплатата очаквате, ако всички фирми в икономиката се държат така? Ако $\Pi < 0$?
+			\end{itemize}
+		\item Условието $ \Pi=0 $, т.е.
+		\[ f(\hat{k})-(r+\delta)\hat{k}-w e^{-xt} = 0, \]
+		заедно с \eqref{eq:contramProfitmax}, ни дава
+		\begin{equation}
+			[f(\hat{k})-\hat{k}f'(\hat{k})]e^{xt} = w.
+			\label{eq:contramProfitmaxzero}
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Фирми}
+	\begin{itemize}\itemsep1em
+		\item При горната постановка можем да определим оптимално съотношение между производствените фактори, т.е. $ \hat{k} $
+		\item Резултатите от това ще се използват в общия модел за определяне на обема на производството на ниво икономика
+		\item Не можем обаче да определим производството на ниво отделна фирма
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Равновесие}
+	\begin{itemize}\itemsep1em
+		\item В разглежданата затворена икономика всяка единица капитал трябва да се притежава от някое домакинство
+		\item Следователно активите трябва да са равни на капитала, $ a=k $
+			\begin{itemize}\itemsep1em
+			\item Ако икономиката беше \emph{отворена}, наличието на разлика между $ a $ и $ k $ би съответствало на нетните (!) активи на домакинствата по отношение на останалия свят
+			\end{itemize} 
+		\item Като поставим $ a=k=\hat{k}e^{xt} $ в уравнение \eqref{eq:contrama}, вземайки предвид, че $ c=\hat{c}e^{xt} $, както и формула \eqref{eq:contramProfitmaxzero} за $ w $ и условието \eqref{eq:contramProfitmax}, намираме
+		\begin{equation}
+			\dot{\hat{k}}=f(\hat{k})-\hat{c}-(x+n+\delta)\hat{k},
+			\label{eq:contramkhat}
+		\end{equation}
+		където $ \hat{k}(0) $ е дадено
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Равновесие}
+	\begin{itemize}\itemsep1em
+		\item Уравнение \eqref{eq:contramkhat} само по себе си не е достатъчно за решаването на модела -- необходимо е да определим и $\hat{c}$
+		\item Ще разгледаме частния случай на избора \eqref{eq:contramCRRAfunc} на функция на полезност
+		\item Като вземем предвид, че $ \hat{c}=c e^{-xt} $ и $ r=f(\hat{k})-\delta $ намираме чрез \eqref{eq:contramEulerCRRA} уравнението 
+		\begin{equation}
+			\frac{\dot{\hat{c}}}{\hat{c}}\equiv \frac{\dot{c}}{c}-x = \frac{1}{\theta}[f'(\hat{k})-\delta -\rho -\theta x].
+			\label{eq:contramchat}
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Модел на Рамзи}
+	\framesubtitle{Равновесие}
+	\begin{itemize}\itemsep1em
+		\item Системата \eqref{eq:contramkhat}-\eqref{eq:contramchat} за $ \hat{k},\hat{c} $ заедно с началното условие $ \hat{k}(0) $ и крайното условие \eqref{eq:contramTransvcondnew} (т.е. условие в $ +\infty $) ще определя оптималния път за $ \hat{k},\hat{c} $
+		\item Предвид $ a=k=\hat{k}e^{xt} $ и уравнение \eqref{eq:contramProfitmax}, условието за трансверсалност \eqref{eq:contramTransvcondnew} приема вида
+		\begin{equation}
+			\lim\limits_{t \rightarrow \infty} \left\{ \hat{k}(t) \exp \left( -\int_{0}^{t}[f'(\hat{k}(\nu))-\delta-x-n]\, d\nu \right) \right\} =0.
+			\label{eq:contramTransvcondnew1}
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Резултати за модела на Рамзи}
+	\framesubtitle{Равновесни траектории и стационарни точки}
+	\begin{itemize}\itemsep1em
+		\item Подобно на модела на Солоу, \textbf{равновесна траектория} дефинираме като такава, върху която $ \hat{k} $ и $ \hat{c} $ имат \emph{постоянен темп на изменение}, т.е.
+		\begin{equation}
+			\frac{\dot{\hat{k}}}{\hat{k}}=\left(\gamma_{\hat{k}}\right)^*=\const,~\frac{\dot{\hat{c}}}{\hat{c}}=\left(\gamma_{\hat{c}}\right)^*=\const .
+			\label{eq:contramSS}
+		\end{equation}
+		\item Може да се покаже, че върху равновесните траектории величините $ \hat{k} $ и $ \hat{c} $ са константи, т.е. представляват истинско стационарно състояние, а оттам същото се отнася и за $ \hat{y}=f(\hat{k}) $
+		\item Следователно променливите $ k,c,y $ ,,на глава от работещите'' растат с постоянен темп $ x $, а тоталните променливи (за цялата икономика) $ K,C,Y $ -- с темп $ x+n $ 
+		\item Това съответства точно на модела на Солоу
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Резултати за модела на Рамзи}
+	\framesubtitle{Равновесни траектории и стационарни точки}
+	\begin{itemize}\itemsep1em
+		\item Определянето на стационарно състояние $ \hat{k}^*,\hat{c}^* $ става, като положим $ \dot{\hat{k}} $ и $ \dot{\hat{c}} $ равни на нула в \eqref{eq:contramkhat} и \eqref{eq:contramchat}
+		\item Геометрично се интересуваме от двойките $ (\hat{k},\hat{c}) $, които удовлетворяват:
+			\begin{enumerate}
+			\item уравнението $ \dot{\hat{k}}=0 $, т.е.
+			\begin{equation}
+				\hat{c} = f(\hat{k}) - (x+n+\delta)\hat{k},
+				\label{eq:contramdothatkzero}
+			\end{equation}
+			\item уравнението $ \dot{\hat{c}}=0 $, т.е.
+			\begin{equation}
+				f'(\hat{k}^*) = \delta + \rho + \theta x,
+				\label{eq:contramdothatczero}
+			\end{equation}
+			което всъщност е вертикална права $ \hat{k}=\hat{k}^* $
+		\end{enumerate}
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Резултати за модела на Рамзи}
+	\framesubtitle{Стационарни точки на уравнения \eqref{eq:contramkhat} и \eqref{eq:contramchat}}
+	\input{ckhatdotzero_edited.tex}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Резултати за модела на Рамзи}
+	\framesubtitle{Равновесни траектории и стационарни точки}
+	\begin{itemize}\itemsep1em
+		\item На графиката е отчетено поведението на $ f(\hat{k}) $ и кривата е показана до стойността $ \hat{k}^** $, за която $ \hat{c}>0 $
+		\item Условието за екстремум на тази крива е $ f'(\hat{k})-\delta = x+n $, което определя ,,златното правило'' за натрупване на капитал в модела на Солоу (с точност до условието $ x=0 $ в разгледания от нас вариант на модела на Солоу)
+		\item На графиката стойността $ \hat{k}^* $ е взета вляво от $ \hat{k}_{\text{gold}}$ -- това е свойство на модела, когато е изпълнено условието за трансверсалност
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Резултати за модела на Рамзи}
+	\framesubtitle{Динамика}
+	\begin{itemize}\itemsep1em
+		\item Фазовата диаграма на системата \eqref{eq:contramkhat}, \eqref{eq:contramchat} е от тип \textbf{седло} 
+		\item Следователно съществува единствен устойчив път към стационарното състояние
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Резултати за модела на Рамзи}
+	\framesubtitle{Фазова диаграма на системата от уравнения \eqref{eq:contramkhat}-\eqref{eq:contramchat}}
+	\input{ramseyphaseportrait_edited.tex}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Резултати за модела на Рамзи}
+	\framesubtitle{Динамика}
+	\begin{itemize}\itemsep1em
+		\item Макар че на фазовата диаграма началното условие за системата е $\hat{k}_0, \hat{c}_0$, между двата компонента на началното условие има съществени разлики
+			\begin{itemize}\itemsep1em
+				\item Началният капитал на единица ефективен труд $\hat{k}_0$ е зададен 
+				\item Стойността на $\hat{c}_0$ се избира като част от решението на оптимизационната задача на домакинството
+			\end{itemize}
+		\item Въпросът е кои точки $\hat{c}_0$ от вертикалната права през $\hat{k}_0$ удовлетворяват необходимите условия
+		\item Може да се покаже, че единствената такава точка е тази, която е върху устойчивия път към стационарното състояние
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Резултати за модела на Рамзи}
+	\framesubtitle{Динамика}
+	\begin{itemize}\itemsep1em
+		\item Устойчивата траектория за $\hat{k}_0 < \hat{k}_0$ е изобразена като изпъкнала функция на нашата фазова диаграма
+		\item Дали това е така зависи от стойността на параметъра $\theta$:
+			\begin{itemize}\itemsep1em
+				\item За малки стойности на $\theta$ траекторията е изпъкнала (както е изобразена)
+				\item За големи стойности на $\theta$ траекторията става вдлъбната и е близо до кривата $\dot{\hat{k}}=0$
+			\end{itemize}
+		\item Ако $\hat{k}_0 > \hat{k}_0$ се наблюдава обратната ситуация -- за малки стойности на $\theta$ траекторията е вдлъбната (виж диаграмата)
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Резултати за модела на Рамзи}
+	\framesubtitle{Динамика}
+	\begin{itemize}\itemsep1em
+		\item В модела на Рамзи \[ \frac{C}{Y} = \frac{\hat{c}}{f(\hat{k})} \] и следователно нормата на спестяване е равна на \[ s=1-\frac{\hat{c}}{f(\hat{k})} \]
+		\item Тази норма, за разлика от модела на Солоу, се изменя във времето и по принцип може да има различна динамика в зависимост от параметризацията на функцията на ползеност и производствената функция
+		\item По-конкретни резултати могат да бъдат получени за случая на производствена функция на Коб-Дъглас $f(\hat{k})=A\hat{k}^\alpha$
+	\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+	\frametitle{Резултати за модела на Рамзи}
+	\framesubtitle{Динамика (за случая Коб-Дъглас)}
+	\begin{itemize}\itemsep1em
+		\item Ако $f(\hat{k})=A\hat{k}^\alpha$, стационарната стойност на нормата на спестяване $ s^* = 1- \frac{\hat{c}^*}{f(\hat{k}^*)} $ е равна на величината \[ \frac{\alpha (x+n+\delta)}{\rho+\theta x + \delta} \]
+		\item Може да се покаже, че $ s^*<\alpha $
+		\item При означението \[ z=\frac{\hat{c}}{f(\hat{k})} \] е в сила \begin{equation}
+			\gamma_z = \frac{\dot{z}}{z}=f'(\hat{k})\left[z(t)-\frac{\theta-1}{\theta}\right] + (\delta+\rho+\theta x)\left(s^* - \frac{1}{\theta}\right).
+			\label{eq:contRP1eq9}
+		\end{equation}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Резултати за модела на Рамзи}
+	\framesubtitle{Динамика (за случая Коб-Дъглас)}
+	\begin{itemize}\itemsep1em
+		\item Ако $ s^* > \frac{1}{\theta} $, то $s$ нараства с нарастването на $\hat{k}$
+		\item Ако $ s^* = \frac{1}{\theta} $, то $s(t)$ е константа $(=s^*)$
+		\item Ако $ s^* < \frac{1}{\theta} $, то $s$ е намаляваща функция от $\hat{k}$
+	\end{itemize}
 \end{frame}
 
 
