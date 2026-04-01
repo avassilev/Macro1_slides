@@ -1,0 +1,189 @@
+% !TeX spellcheck = bg_BG
+\documentclass[leqno]{beamer}
+\mode<presentation>
+\usetheme{Warsaw}
+\useoutertheme{split}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{booktabs}
+\usepackage[round]{natbib}
+\usepackage{rotating}
+\usepackage{pstricks}
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[bulgarian]{babel}
+\usepackage[]{graphicx}
+
+\newtheorem{thm}{Теорема}
+\newtheorem{prop}{Твърдение}
+\newtheorem{lem}{Лема}
+\newtheorem{cor}{Следствие}
+% \theoremstyle{remark} % наименованието е в италик (а не в курсив), тялото е стандартно (а не в италик)
+\theoremstyle{definition} % наименованието е в курсив, тялото е стандартно (а не в италик)
+\newtheorem{remark}{Забележка}
+\newtheorem{defin}{Дефиниция}
+%\numberwithin{thm}{section} \numberwithin{equation}{section}
+%\numberwithin{figure}{section} \numberwithin{table}{section}
+%%\renewcommand\theequation{\thesection.\arabic{equation}}
+%%\def\rem{{\bf Забележка. }}
+%\def\proof{{\bf \noindent Доказателство. }}
+%\def\endprf {\mbox{$\blacksquare$}}
+\newcommand{\beq}{\begin{equation}}
+\newcommand{\eeq}{\end{equation}}
+\newcommand{\bs}{\boldsymbol}
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\meas}{meas}
+\DeclareMathOperator*{\essinf}{essinf}
+\DeclareMathOperator*{\Ran}{Ran} \DeclareMathOperator*{\intr}{int}
+\DeclareMathOperator*{\grad}{grad}
+\DeclareMathOperator*{\dist}{dist}
+\DeclareMathOperator*{\const}{const}
+% \setbeamercovered{transparent}
+\title[Пари]{Пари -- понятие и функции. Парични агрегати}
+\author{Андрей Василев}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}
+\begin{titlepage}
+
+\end{titlepage}
+\end{frame}
+
+\begin{frame}
+\frametitle{Основни въпроси}
+\framesubtitle{}
+\begin{itemize}
+\item Понятие за пари и функции на парите
+\item Парични агрегати
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Какво представляват парите?}
+\framesubtitle{}
+\begin{itemize}
+\item Първи, елементарен отговор: банкнотите и монетите, с които разполагаме
+\item Имам ли пари, ако не разполагам с банкноти и монети, но имам дебитна карта? Сметка в банка?
+\item А ако някой е написал чек на мое име?
+\end{itemize} \bigskip
+
+\textbf{Какво определя нещо като ,,пари'' зависи не от формата, а от функциите му.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Функции на парите}
+\framesubtitle{}
+\begin{itemize}
+\item Средство за размяна (medium of exchange)
+\item Мерна (разчетна) единица (unit of account)
+\item Съхранител на стойност (store of value)
+\item {\color{gray}Стандарт за отложено плащане (standard of deferred payment)}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Функции на парите}
+\framesubtitle{Средство за размяна}
+\begin{itemize}
+\item Икономика с размяна в натура (бартер) 
+\item Как производител на месо може да се сдобие с дрехи -- двойно съвпадение на нуждите
+\item По-сложни вериги на размяна
+\item Полза от общоприето средство за размяна
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Функции на парите}
+\framesubtitle{Мерна (разчетна) единица}
+\begin{itemize}
+\item В бартерна икономика с $n$ стоки, трябва да знаем $\frac{n(n-1)}{2}$ обменни съотношения между стоките
+\item В икономика с пари трябва да знаем $n$-те цени на съответните стоки
+\item Това е по-ефективно от информационна гледна точка
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Функции на парите}
+\framesubtitle{Съхранител на стойност}
+\begin{itemize}
+\item Производител на бързо развалящи се стоки
+\item Ако няма необходимост да потребява в даден момент, трябва да продаде продукцията си, да закупи по-дълготрайна продукция, която да продава, когато дойде време да потребява
+\item Ако търговията е на отдалечено място, стоката трябва да бъде лесно преносима
+\item Следователно един ефективен съхранител на стойност трябва да бъде дълготраен и (в общия случай) преносим
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Функции на парите}
+\framesubtitle{Стандарт за отложено плащане}
+\begin{itemize}
+\item Производна функция от първите три
+\item Задължения, които трябва да бъдат погасени в бъдещето, традиционно се мерят в пари
+\item С други думи, парите са типичния начин, по който се погасяват задължения
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Допълнителни пояснения}
+\framesubtitle{}
+\begin{itemize}
+\item Ролята на пари могат да изпълняват най-разнообразни обекти
+	\begin{itemize}
+	\item сол
+	\item ценни подправки
+	\item благородни метали
+	\item специални обекти (цигари, камъни, ...)
+	\end{itemize}
+\item В определени случаи дали даден обект може да бъде считан за пари или не е въпрос на интерпретация
+\item Това дава възможност за въвеждане на класификации с различна степен на строгост (например по степен на ликвидност)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Пример: парични агрегати (1)}
+\framesubtitle{(на база паричен отчет)}
+\begin{itemize}
+\item Пари извън ПФИ = банкнотите и монетите в обращение в
+икономиката (тези, които се държат от небанковите
+икономически агенти)
+\item Oвърнайт-депозити = депозити, които нямат определен срок и
+могат незабавно да се конвертират в пари в брой или да се
+преведат чрез банково нареждане или чек без ограничения или
+санкции. Депозитите до 1 ден се причисляват към
+овърнайт-депозитите.
+\item Квазипари = депозити с договорен матуритет до 2 години
+и депозити, договорени за ползване след предизвестие
+(включително спестовни депозити), до 3 месеца
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Пример: парични агрегати (2)}
+\framesubtitle{(на база паричен отчет)}
+\begin{itemize}
+\item Търгуеми инструменти = нисколиквидни финансови
+инструменти (издадените дългови ценни книжа до
+2 години, акциите и дялове на фондовете на паричния пазар и
+репо-сделките (споразумения за предоставяне на пари срещу ценни
+книжа, но с ангажимент за обратното им изкупуване)).
+\item Широки пари M3 (парично предлагане)
+\item Основни връзки:
+\[ \text{пари извън ПФИ} + \text{овърнайт-депозити} = \text{М1} \]
+\[ \text{М1} + \text{квазипари} = \text{М2} \]
+\[ \text{М2} + \text{търгуеми инструменти} = \text{М3} \]
+\end{itemize}
+\end{frame}
+
+%\begin{frame}  \frametitle{Литература}
+%\bibliographystyle{plainnat}
+%\bibliography{BibDatabase1}
+%\end{frame}
+\end{document}
